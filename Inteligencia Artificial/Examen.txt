@@ -1,0 +1,24 @@
+PARTE A
+
+    No es adecuado utilizar IA en contextos en donde es requerida una alta seguridad, dígase salúd o ciberseguridad; esto, ya que tienden a pasar por alto muchos aspectos que podrían ser de suma relevancia.
+    Porque el algoritmo es altamente dependiente de tamaño y calidad del dataset; es decir, un dataset de tamaño mediano puede tener una gran complejidad computacional para un algoritmo pequeño, pero no para uno grande; es decir, el desempeño casi siempre es más dependiente de un dataset de tamaño adecuado y bien preprocesado.
+    Un dataset grande puede tener grandes cantidades de ruido e información irrelevante al contrario que uno representativo, que se utiliza especialmente en entornos de prueba y entrenamiento. Un dataset grande pero no procesado adecuadamente puede ocasionar sesgos en el modelo, además de que podría acumular una alta complejidad computacional a diferencia de uno más pequeño y mejor curado (representativo).
+    El data leakage es un evento que ocurre cuando el modelo encuentra información de tiempos futuros durante su entrenamiento, lo que le permite hacer trampa al momento de predecir en sus pruebas. Por ejemplo, si en un sistema de predicción de deserciones, si se contiene un campo nullable con la fecha de la deserción de un cliente, el modelo puede utilizar esa información privilegiada.
+    Usualmente esto viene ocasionado por un mal dataset. Entre los dos ejemplos a incluir, se puede mencionar: a) Demasiado ruido o datos irrelevantes, y b) Demasiados campos vacíos.
+    La precisión (como métrica) viene dada como un sistema de medición para determinar la cantidad de positivos detectados que si son realmente positivos; por otro lado, la interpretabilidad permite conocer al entrenador cómo es que el modelo funciona internamente y cómo es que llega a los resultados de salida. A su vez, el costo computacional define la cantidad de recursos utilizados (y tiempo) para utilizar el modelo. Preferentemente debe alcanzarse un balance entre los tres de manera que el sistema funcione óptimamente; sin embargo, podría omitirse el uso de presición en casos en donde resulta más relevante evitar falsos negativos en las predicciones.
+
+PARTE B
+
+
+Caso 01:
+
+    Puede ser engañoso dado que el modelo podría fácilmente optar por predecir todos como casos negativos al siempre tener una probabilidad tan alta.
+    En este caso, utilizaría recall, dado que al permitir evitar falsos negativos, se tendría un mayor índice de positivos a revisar y existen menos probailididades de pasar como sano a un paciente enfermo.
+    El error más crítico sería tener un número mayor de falsos negativos, en donde es probable que se categorice como sanos a pacientes enfermos.
+
+Caso 02:
+
+    Hay más del 5% de datos faltantes respecto a la edad, hay outliers fuertes respecto a los salarios, existe un fuerte desbalance en la variable para el tipo de plan y hay alto riesgo de data leakage dado que la fecha de cancelación tiene información acerca de los clientes que ya cancelaron sus planes. 
+    Primeramente, llenaría los datos de edad faltantes con promedios, limitaría los outliers (o les aplicaría una transformación dada la necesidad), me encargaría de balancear la información para el tipo de plan y eliminaría por completo la categoría de fecha de cancelación para prevenir leakage.
+    Eliminaría por completo la categoría de fecha de cancelación para prevenir leakage; esto, ya que contiene información que se está tratando de predecir.
+    El modelo sería un desastre; por ejemplo, el outlier y el desbalance podrían ocasionarle sesgos, además de que podría no predecir lo que se busca, sino hacer trampa utilizando los datos futuros, lo que rompe el entrenamiento.
