@@ -95,12 +95,9 @@ El **Point of View** puede definirse como una estructura canónica cuya utilidad
     
 Esta estructura previene la ideación de soluciones prematuras, manteniendo el punto focal hacia la problemática real del usuario.
 
---
---
+### How Might We (HMW):
 
-### How Might We (HMW)
-
-El HMW reformula el problema hacia una oportunidad de solución sin imponer una respuesta específica. Por ejemplo:
+El **How Might We** es una reformulación del problema en dirección a una oportunidad de solución sin llegar a imponer una respuesta particular; es decir, simplemente plantea una solución alternativa con base en una reescritura de la problemática:
 
 > El estudiante de ingeniería del turno matutino necesita conocer la disponibilidad real de espacios antes de ingresar al campus, porque ha observado que perder 20 minutos buscando lugar en un estacionamiento lleno es la causa principal de sus retardos a la primera clase.
 
@@ -112,17 +109,14 @@ A partir de esto, se plantea:
 
 ## Transición del análisis al Product Backlog
 
-El cierre del análisis funciona como un **puente metodológico** hacia Scrum. Scrum asume que el análisis previo ya existe y que es sólido.
-
-La relación entre artefactos es directa:
+La fase de cierre de análisis se erige como un *puente* hacia la metodología *Scrum*, mismo para el que se requiere asumir que el análisis previo ya existe y es, en efecto, sólido. Cada uno de los puntos focales extraidos puede ser directamente traducido:
 
 - Los **puntos de dolor** identificados en el Journey Map se transforman en **épicas o funcionalidades**.
-    
+	
 - Las **necesidades de la Persona** se convierten en **historias de usuario**.
     
 - El **HMW** se traduce en **objetivos de sprint**.
-    
-
+	
 ---
 
 ## Entregables formales del análisis
@@ -141,44 +135,5 @@ Al finalizar esta fase, el equipo debe contar con:
     
 - Declaración POV validada del problema central.
     
-
 ---
 
-## Actividad práctica en clase
-
-Durante el taller de formalización, el equipo debe:
-
-1. Sintetizar la información obtenida previamente.
-    
-2. Visualizar el proceso mediante un Journey Map.
-    
-3. Definir el POV del problema principal.
-    
-4. Presentar el hallazgo principal al grupo.
-    
-
----
-
-## Criterios de evaluación
-
-La evaluación del análisis se basa en:
-
-- **Trazabilidad**, verificando que cada problema tenga evidencia observada.
-    
-- **Profundidad**, evaluando si se identifican causas raíz y no solo síntomas.
-    
-- **Viabilidad**, asegurando que el problema sea resoluble dentro del tiempo del curso.
-    
-
----
-
-> _“Un problema bien entendido es medio sistema resuelto.”_  
-> — Adaptación de Charles Kettering
-
----
-
-### Próxima sesión
-
-User Story Mapping e inicio de sprints.
-
-Si quieres, puedo **resumir estos apuntes para repaso rápido**, **convertirlos en preguntas tipo examen**, o **extraer solo lo más importante en una hoja de estudio** 📘✨
