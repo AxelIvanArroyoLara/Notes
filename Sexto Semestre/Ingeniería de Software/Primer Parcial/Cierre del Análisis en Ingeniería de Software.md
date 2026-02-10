@@ -85,7 +85,7 @@ El recorrido se divide en:
 
 ### Point of View (POV)
 
-El POV es una estructura canónica que permite centrar el alcance del problema. Define claramente:
+El **Point of View** puede definirse como una estructura canónica cuya utilidad se encuentra en centrar el origen de la problemática mediante la definición de:
 
 - Quién es el usuario.
     
@@ -93,8 +93,10 @@ El POV es una estructura canónica que permite centrar el alcance del problema. 
     
 - Por qué lo necesita.
     
+Esta estructura previene la ideación de soluciones prematuras, manteniendo el punto focal hacia la problemática real del usuario.
 
-El POV evita soluciones prematuras y mantiene el enfoque en el problema real.
+--
+--
 
 ### How Might We (HMW)
 
