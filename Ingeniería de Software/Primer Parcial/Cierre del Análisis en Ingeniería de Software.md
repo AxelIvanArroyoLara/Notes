@@ -49,53 +49,35 @@ Resulta de suma relevancia identificar las causas principales de las problemáti
 ## Artefactos de Formalización del Análisis
 
 Con la finalidad de cerrar adecuadamente el análisis preliminar, se hace uso de artefactos que permiten llevar a cabo la transformación de las observaciones cualitativas en información técnica clara e interpretable.
+### Persona (arquetipo de usuario):
 
----
----
----
+La **Persona** se define como un arquetipo diseñado con base en el usuario base sin representar a un individuo real; este tiene la característica principal de que encapsula patrones de comportamiento y problemáticas relevantes a resolver mediante la solución planteada. Este perfil técnico debe incluir:
 
-### Persona (arquetipo de usuario)
+- **Metas funcionales:** Las cosas que intenta lograr el usuario en su trabajo cotidiano.
+- **Frustraciones actuales:** Se relaciona con procesos, sistemas o restricciones que impiden al usuario lograr sus objetivos.
+- **Nivel de competencia digital:** Parámetro que indica la capacidad técnica que tiene el usuario para interactuar con el programa, lo que influye en el diseño de la interfaz y la experiencia general del mismo.
 
-La Persona define al actor principal del sistema. No representa a un individuo real, sino a un **perfil sintetizado** que encapsula patrones de comportamiento relevantes.
+Debe enfatizarse la omisión de datos demográficos irrelevantes para el estudio, y concentrarse mayoritariamente en información particular que realmente tenga una aportación técnica.
+### Mapa de Empatía:
 
-Un perfil técnico adecuado debe incluir:
+El **mapa de empatía** es un elemento cuyo propósito principal es dar estructura al contexto psicológico del usuario con la finalidad de hallar contradicciones entre sus palabras y sus acciones. Para ello, se distinguen dos contextos distintos:
 
-- **Metas funcionales**, es decir, qué intenta lograr el usuario en su trabajo cotidiano.
-    
-- **Frustraciones actuales**, relacionadas con procesos, sistemas o restricciones que le impiden alcanzar sus objetivos.
-    
-- **Nivel de competencia digital**, ya que este factor impacta directamente en decisiones de diseño de interfaz y experiencia de usuario.
-    
+- **Contexto externo:** Se toman en cuenta las presiones organizacionales, las exigencias de los superiores y las normativas del entorno del trabajo, mismas que permiten definir las restricciones del sistema.
+- **Contexto interno:** Se busca encontrar una brecha entre las palabras y las acciones del usuario; por ejemplo, si este afirma que un sistema le resulta fácil de utilizar, pero constantemente lo evita, esto pasa a generar un *requerimiento no funcional*.
 
-Se deben evitar datos demográficos irrelevantes y concentrarse exclusivamente en información que tenga **impacto técnico**.
+### Customer Journey Map (estado actual):
 
----
-
-### Mapa de Empatía
-
-El mapa de empatía estructura el **contexto psicológico del usuario** y permite identificar contradicciones entre lo que el usuario dice y lo que realmente hace.
-
-- En el **contexto externo (ve y oye)** se analizan presiones organizacionales, exigencias de superiores y normativas, las cuales definen restricciones del sistema.
-    
-- En el **contexto interno (piensa y siente)** se busca la brecha entre discurso y acción. Por ejemplo, si el usuario afirma que un sistema es “fácil”, pero duda constantemente al usarlo, esto evidencia un **requerimiento no funcional de usabilidad**.
-    
-
----
-
-### Customer Journey Map (estado actual)
-
-El Journey Map representa el recorrido del usuario a lo largo del proceso actual, destacando sus estados emocionales, tiempos y fricciones.
-
-Cada **valle emocional** identificado en este mapa constituye una **oportunidad de mejora técnica**.
+Un **Jorney Map** es un elemento que permite representar el recorrido total de un usuario a través del proceso actual de trabajo, destacando sus estados emocionales, la duración de las acciones y las fricciones que puedan experimentar. En el mapa se encuentran diversos *valles emocionales*, mismos, que serán de utilidad para encontrar áreas de mejora técnica.
 
 El recorrido se divide en:
 
-- **Antes**, donde se analiza el detonante que inicia el proceso y las expectativas iniciales del usuario.
-    
-- **Durante**, donde se identifican puntos de fricción, pérdidas de información y lentitud del sistema. En esta fase suelen emerger las **épicas**.
-    
-- **Después**, donde se evalúa si el usuario alcanzó su objetivo o quedó frustrado, lo cual define el **criterio de éxito del sistema**.
-    
+- **Antes:** Se analizan los motivos por los que se desencadena el proceso, así como las expectativas iniciales del usuario que lo realiza.
+- **Durante:** En donde se identifican los puntos de fricción con el sistema, dígase pérdidas de información o lentitud. En esta fase, suelen emerger las **épicas**.
+- **Después:** Lapso en el que se evalúa el nivel de éxito o fracaso respecto al objetivo principal del usuario. Esto define los *criterios de éxito* del sistema.
+
+---
+---
+
 
 ---
 
