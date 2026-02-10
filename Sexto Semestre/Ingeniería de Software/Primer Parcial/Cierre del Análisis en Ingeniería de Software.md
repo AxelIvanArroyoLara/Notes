@@ -76,10 +76,6 @@ El recorrido se divide en:
 - **Después:** Lapso en el que se evalúa el nivel de éxito o fracaso respecto al objetivo principal del usuario. Esto define los *criterios de éxito* del sistema.
 
 ---
----
-
-
----
 
 ## Definición formal del problema
 
