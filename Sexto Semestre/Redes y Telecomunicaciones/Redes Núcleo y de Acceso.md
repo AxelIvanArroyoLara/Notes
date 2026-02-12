@@ -75,36 +75,23 @@ Los protocolos más relevantes se definen a continuación:
 - Tecnologías móviles 4G y 5G
     
 
----
----
-## Protocolos humanos y protocolos de red
-
-El documento introduce una analogía entre los **protocolos humanos** y los **protocolos de red**.  
-Como ejemplos de protocolos humanos se mencionan:
-
-- Las conversaciones telefónicas
-    
-- Las presentaciones entre personas
-    
-
-Estos protocolos humanos siguen reglas implícitas, como turnarse para hablar o responder de cierta forma ante un saludo. De manera similar, los protocolos de red siguen reglas bien definidas para permitir una comunicación ordenada y comprensible entre dispositivos.
-
-Esta analogía ayuda a entender que los protocolos no son exclusivos de las computadoras, sino una forma general de coordinar la comunicación.
+De manera similar a los seres humanos (quienes toman turnos para hablar y tienen ciertas respuestas predefinidas para los saludos), los protocolos en las redes aseguran que la comunicación entre ellas sea fluida, limpia y ordenada.
 
 ---
 
-## 5. Estándares del Internet
+## Estándares del Internet
 
-Para que el Internet funcione a escala global, es necesario que todos los dispositivos sigan **estándares comunes**. Estos estándares se documentan en los llamados **RFC (Request for Comments)**.
+De manera que sea posible hacer funcionar al internet globalmente, todos los dispositivos siguen una serie de **estándares** comunes documentados en los llamados *Request for Comments* (RFC).
 
-La organización responsable del desarrollo y mantenimiento de estos estándares es la **IETF (Internet Engineering Task Force)**.  
-El uso de estándares abiertos garantiza que dispositivos y sistemas de distintos fabricantes puedan comunicarse sin problemas.
+La principal organización responsable de los procesos de desarrollo y mantenimiento de los estándares antes descritos, es la **Internet Engineering Task Force**, IETF por sus siglas.
+
+La utilización de estándares abiertos permite garantizar que los dispositivos y sistemas logren comunicarse entre sí efectivamente, incluso perteneciendo a distintos fabricantes.
 
 ---
 
-## 6. Red núcleo (Core Network)
+## Red núcleo (*Core Network*)
 
-La **core network** es la parte central de la red y constituye el **backbone** del Internet. Su función principal es proporcionar:
+Una **core network** es el pilar central de la red, suponiendo el *backbone* del internet mismo. Su función principal es proporcionar:
 
 - Transferencia de datos a alta velocidad
     
@@ -113,11 +100,9 @@ La **core network** es la parte central de la red y constituye el **backbone** d
 - Capacidad para manejar grandes volúmenes de tráfico
     
 
-La red núcleo conecta diferentes regiones de la red y enlaza múltiples redes de acceso entre sí. En esta parte de la red se utilizan equipos de alto rendimiento y técnicas avanzadas de transmisión.
+Esta red núcleo interconecta distintas regiones de la red, enlazando múltiples redes de acceso entre sí. Para lograr mantenerla en funcionamiento, se utilizan equipos de alto rendimiento, así como técnicas avanzadas de transmisión.
 
-### Características clave de la core network
-
-El documento menciona como características principales:
+Entre sus características clave se encuentran: 
 
 - **Interconectividad**: conecta múltiples redes de acceso, redes de borde y otras redes núcleo, incluso entre países o regiones.
     
@@ -126,9 +111,9 @@ El documento menciona como características principales:
 
 ---
 
-## 7. Red de acceso (Access Network)
+## Red de acceso (*Access Network*)
 
-La **access network** es la parte de la red que conecta directamente a los **usuarios finales** con la infraestructura del Internet. Se le conoce comúnmente como el **“último kilómetro” o “last mile”**.
+Por su parte, la **access network** forma parte de la red que permite conectar a los usuarios con la infraestructura del internet. Se le conoce coloquialmente como el *último kilómetro* o *last mile*.
 
 Esta red permite que dispositivos como:
 
@@ -141,11 +126,9 @@ Esta red permite que dispositivos como:
 - Dispositivos IoT
     
 
-puedan acceder al núcleo de la red.
+puedan acceder al núcleo de la red sin complicaciones.
 
-### Características clave de la red de acceso
-
-El documento indica que la red de acceso se caracteriza por:
+Esta clase de red se caracteriza por:
 
 - **Dispositivos**: incluye sistemas finales y dispositivos de acceso como puntos de acceso, torres celulares y módems.
     
@@ -154,13 +137,12 @@ El documento indica que la red de acceso se caracteriza por:
 
 ---
 
-## 8. Tecnologías de acceso cableadas e inalámbricas
+## Tecnologías de acceso cableadas e inalámbricas
 
-El documento distingue entre dos grandes tipos de tecnologías de acceso:
+Se distingue entre dos grandes tecnologías de acceso principales:
+### Acceso cableado:
 
-### Acceso cableado
-
-Se menciona específicamente **Ethernet**, con velocidades típicas de:
+Típicamente **Ethernet**, con velocidades típicas de:
 
 - 100 Mbps
     
@@ -169,9 +151,13 @@ Se menciona específicamente **Ethernet**, con velocidades típicas de:
 - 10 Gbps
     
 
-### Acceso inalámbrico
+#### *Hybrid Fiber-Coaxial:*
 
-Se menciona **IEEE 802.11 (Wi-Fi)**, con puntos de acceso que pueden operar a velocidades aproximadas de:
+Se tienen 
+
+### Acceso inalámbrico:
+
+Principalmente **IEEE 802.11 (Wi-Fi)**, con puntos de acceso que pueden operar a velocidades aproximadas de:
 
 - 11 Mbps
     
@@ -183,8 +169,9 @@ Se menciona **IEEE 802.11 (Wi-Fi)**, con puntos de acceso que pueden operar a ve
 Estas tecnologías permiten la movilidad y flexibilidad en el acceso a la red.
 
 ---
+---
 
-## 9. Red de acceso basada en cable: HFC
+## Red de acceso basada en cable: HFC
 
 El documento describe explícitamente la **Cable-based Access Network: HFC (Hybrid Fiber-Coaxial)**.
 
@@ -197,6 +184,9 @@ HFC combina:
 
 Esta arquitectura se utiliza ampliamente para ofrecer servicios de Internet de banda ancha y televisión por cable.
 
+---
+---
+
 ### Características del HFC
 
 - **Ancho de banda**: mayor que el uso exclusivo de coaxial, gracias al backbone de fibra, alcanzando hasta **1.2 Gbps** en muchas implementaciones.
@@ -205,60 +195,4 @@ Esta arquitectura se utiliza ampliamente para ofrecer servicios de Internet de b
     
 - **Costo**: es más económico que desplegar fibra óptica directamente hasta cada usuario final.
     
-
 ---
-
-## 10. Diagramas presentes en el documento
-
-El documento incluye **diagramas visuales** (no textuales) que representan:
-
-- La estructura general del Internet como red de redes
-    
-- La distinción entre red núcleo y redes de acceso
-    
-- La arquitectura de una red HFC
-    
-
-### Descripción ASCII aproximada de los diagramas
-
-```
-[ End Systems ]
-       |
-   Access Network
-       |
-------------------- Core Network -------------------
-       |
-   Access Network
-       |
-[ End Systems ]
-```
-
-```
-        Fiber Backbone
-   ======================
-          |
-      Coaxial Cable
-          |
-       Customer
-```
-
----
-
-## Cierre del módulo
-
-Este módulo introduce los conceptos fundamentales necesarios para comprender el funcionamiento del Internet, incluyendo su estructura como red de redes, el papel central de los protocolos, la importancia de los estándares, y la división entre redes de acceso y red núcleo, junto con tecnologías reales como Ethernet, Wi-Fi y HFC.
-
----
-
-Si quieres, en el siguiente mensaje puedo:
-
-- 🔹 **Reducir estos apuntes para examen**
-    
-- 🔹 **Convertirlos en preguntas tipo parcial**
-    
-- 🔹 **Continuar con el siguiente módulo**
-    
-- 🔹 **Unificarlos con otros módulos en un solo documento**
-    
-
-Tú mandas. Esta vez, **bien hecho** 😌📘
