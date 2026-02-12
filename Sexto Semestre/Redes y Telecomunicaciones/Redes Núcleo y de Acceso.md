@@ -153,7 +153,19 @@ Típicamente **Ethernet**, con velocidades típicas de:
 
 #### *Hybrid Fiber-Coaxial:*
 
-Se tienen 
+Como parte de las tecnologías de acceso por cable, se tiene la *Hibrid Fiber-Coaxial*, misma que se encarga de combinar:
+
+- Fibra óptica para su *backbone*.
+	
+- Cables coaxiales para la conexión respecto al usuario final.
+
+Esta es una de las principales arquitecturas capaces de permitir la oferta de servicios de red de banda ancha y televisión por cable. Sus características principales son las siguientes:
+
+- **Ancho de banda**: Es muchísimo mayor a un *backbone* de coaxiales; esto, debido a que la fibra óptica permite velocidades de hasta **1.2 Gbps** en la mayoría de implementaciones.
+    
+- **Distancia**: La fibra óptica permite la transmisión de los datos a largo alcance sin deteriorar la conexión, a diferencia del cable coaxial, encargado de cubrir únicamente el tramo final de la implementación dadas sus desventajas.
+    
+- **Costo**: El uso de los cables coaxiales en el tramo final, resulta sumamente más económico que llevar los cables de fibra directamente hasta el usuario final.
 
 ### Acceso inalámbrico:
 
@@ -168,31 +180,4 @@ Principalmente **IEEE 802.11 (Wi-Fi)**, con puntos de acceso que pueden operar a
 
 Estas tecnologías permiten la movilidad y flexibilidad en el acceso a la red.
 
----
----
-
-## Red de acceso basada en cable: HFC
-
-El documento describe explícitamente la **Cable-based Access Network: HFC (Hybrid Fiber-Coaxial)**.
-
-HFC combina:
-
-- **Fibra óptica** en el backbone
-    
-- **Cable coaxial** para la conexión del último tramo hacia el usuario
-    
-
-Esta arquitectura se utiliza ampliamente para ofrecer servicios de Internet de banda ancha y televisión por cable.
-
----
----
-
-### Características del HFC
-
-- **Ancho de banda**: mayor que el uso exclusivo de coaxial, gracias al backbone de fibra, alcanzando hasta **1.2 Gbps** en muchas implementaciones.
-    
-- **Distancia**: la fibra permite conexiones de largo alcance, mientras que el cable coaxial cubre el último tramo, aproximadamente **500 metros**.
-    
-- **Costo**: es más económico que desplegar fibra óptica directamente hasta cada usuario final.
-    
 ---
