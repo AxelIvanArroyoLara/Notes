@@ -14,6 +14,7 @@ En el campo de las telecomunicaciones, resulta de suma importancia comprender el
 
 El punto focal es físico: *señales*, *codificación* y el *medio* de transmisión. Esta es la diferencia en la mentalidad: se piensa en energía o señal y cómo sobrevivirá al trayecto sin degradarse eventualmente.
 
+---
 ## Redes de Computadoras
 
 Una **red de computadoras** se define como un conjunto de dispositivos interconectados que comparten recursos y datos utilizando *protocolos* de comunicación. Los dispositivos pueden ser computadoras, servidores, impresoras u otros equipos. Aquí, el enfoque deja de basarse en señal para pasar hacia la comunicación organizada: quién envía, quién recibe, con qué reglas y qué servicio se logra.
@@ -141,6 +142,7 @@ Para lograr elegir correctamente, conviene cuestionarse:
 
 - ¿La prioridad es el costo o la continuidad del servicio?
 
+---
 ## Categorización de Redes por Alcance
 
 ### *Personal Area Network* (PAN):
