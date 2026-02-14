@@ -1,0 +1,165 @@
+# Telecomunicaciones
+
+Las **telecomunicaciones** pueden ser entendidas como una serie de sistemas para comunicar y transmitir información a larga distancia; esto, utilizando medios eléctricos a electromagnéticos. El punto esencial es el enfoque físico: un mensaje debe convertirse en una *señal* (secuencia de corrientes y voltajes) que se prepara para viajar a través de procedimientos como la **codificación** y la **modulación** hasta llegar al dispositivo receptor.
+
+### Medios de transmisión y enfoque principal:
+
+En el campo de las telecomunicaciones, resulta de suma importancia comprender el dónde y el cómo es que viaja una señal. Para lograr este objetivo, pueden ser utilizados diversos medios; por ejemplo:
+
+- Cableado (incluyendo trenzado).
+	
+- El vacío o espacio libre mediante ondas electromagnéticas.
+	
+- Fibra óptica.
+
+El punto focal es físico: *señales*, *codificación* y el *medio* de transmisión. Esta es la diferencia en la mentalidad: se piensa en energía o señal y cómo sobrevivirá al trayecto sin degradarse eventualmente.
+
+## Redes de Computadoras
+
+Una **red de computadoras** se define como un conjunto de dispositivos interconectados que comparten recursos y datos utilizando *protocolos* de comunicación. Los dispositivos pueden ser computadoras, servidores, impresoras u otros equipos. Aquí, el enfoque deja de basarse en señal para pasar hacia la comunicación organizada: quién envía, quién recibe, con qué reglas y qué servicio se logra.
+
+### Énfasis de una red a nivel lógico:
+
+Las redes se diseñan para conectar dispositivos y permitir el intercambio de datos, pero su atención principal está en el sector lógico: protocolos como *TCP / IP*, organización de datos, enrutamiento y servicios. En redes, el problema típico no es solo que la señal llegue, sino que también lo haga hacia el destino correcto, con reglas, control y utilidad. 
+
+---
+# Diferencias entre Telecomunicaciones y Redes
+
+La diferencia puede ser resumida de la siguiente manera:
+
+- Las *redes* se enfocan en cómo se comunican los dispositivos (nivel lógico).
+
+- Las *telecomunicaciones* se enfocan en cómo se transmite la información (nivel físico).
+
+Esto permite evitar confusiones. Por ejemplo, se puede tener una transmisión físicamente excelente (buena señal) pero una comunicación lógica mal diseñada (mal enrutamiento o protocolos mal configurados), o viceversa: protocolos perfectos, pero un medio físico ruidoso que arruina el envío.
+
+---
+
+# Categorización de Redes por Topología
+
+La **topología** es la manera en la que se organizan los dispositivos (**nodos**) y sus enlaces. Se entiende por dos capas:
+
+- **Topología lógica:** Cómo fluye la información, sin importar la forma exacta.
+
+- **Topología física:** El cableado real y la disposición física.
+
+### Tipología estrella:
+
+Se tiene un *nodo* central y varios otros alrededor:
+
+![[Pasted image 20260213232523.png]]
+
+- **Ventajas principales:** Expansión sencilla y buen desempeño (menos colisiones en el centro) según el enfoque del material.
+
+- **Desventajas principales:** El centro es el único punto de fallo y se requieren más cables o equipo.
+
+### Topología bus:
+
+Todos se conectan a un mismo *backbone* y viajan en ambos sentidos. Cuando un equipo transmite, todos los demás *escuchan*, pero solo el destinatario lo acepta. En *bus*, como comparten el mismo canal, aparece un problema natural: si dos transmiten a la vez, hay colisiones.
+
+![[Pasted image 20260213233104.png]]
+
+- **Ventajas:** Poco cableado y equipo sencillo. Mejor elección para redes pequeñas y temporales.
+
+- **Desventajas:** Es poco escalable; a más equipos y tráfico, más colisiones y lentitud. Si el cable troncal se daña, toda la red se ve afectada y puede ser muy difícil de diagnosticar.
+
+### Topología de anillo:
+
+En un anillo, cada nodo se conecta con dos vecinos y el tráfico transita alrededor del círculo (en una dirección o dos, según el diseño). En muchos diseños clásicos se utiliza un mecanismo de control conocido como *token*; solo el dispositivo que lo tiene, es el que puede transmitir, lo que reduce las colisiones de manera exponencial:
+
+![[Pasted image 20260213233639.png]]
+
+- **Ventajas:** Se previenen los choques gracias al uso del *token*. El desempeño puede ser predecible si existen reglas detrás del turno.
+
+- **Desventajas:** Si un nodo o enlace falla, puede romperse el anillo y afectar a todos. Agregar y eliminar nodos requiere reconfiguraciones. Es complicado hallar el punto exacto de una falla. 
+
+### Topología de malla:
+
+Existen múltiples rutas entre puntos; si un camino falla, el tráfico puede redirigirse por otro. En redes modernas, se apoya en protocolos de enrutamiento o en controladores (según el tipo de red).
+
+En una **malla completa**, cada nodo se encuentra interconectado con todos los demás; tiene una máxima redundancia y un máximo costo. En el caso de una **malla parcial**, algunos de los nodos tienen enlaces múltiples y otros menos, existiendo un balance entre costo y tolerancia a fallas.
+
+![[Pasted image 20260213234144.png]]
+
+- **Ventajas:** Si cae un enlace, la red puede continuar, además de que es posible seleccionar rutas más cortas o menos congestionadas.
+
+- **Desventajas:** Alto costo computacional y complejidad de gestión.
+
+### Topología *point to point*:
+
+Es la relación más directa: dos dispositivos conectados por un enlace dedicado. No existe competencia por el medio con otros nodos.
+
+![[Pasted image 20260213235203.png]]
+
+- **Ventajas:** Seguridad máxima, rendimiento y latencia estables y fácil diagnóstico.
+
+- **Desventajas:** No escala a más de dos dispositivos.
+
+### Topología de árbol: 
+
+Es una estructura *jerárquica*, en donde una raíz conecta *ramas* y *subramas*. Puede compararse a topologías estrella conectadas entre sí: un *switch* central, luego secundarios y finalmente los equipos computacionales de llegada. 
+
+![[Pasted image 20260213235218.png]]
+
+- **Ventajas:** Estabilidad ordenada, segmentación natural y aislamiento de fallos (gracias a las ramas).
+
+- **Desventajas:** Dependencia de la estabilidad de la *raíz* y, derivado de ello, un diseño mucho más delicado.
+
+### Topología híbrida:
+
+Surge de la combinación de diversas topologías para lograr objetivos concretos. Ideal para la mayoría de redes grandes en el mundo real. 
+
+![[Pasted image 20260213235230.png]]
+
+- **Ventajas:** Alta flexibilidad para el diseño.
+
+- **Desventajas:** Alta complejidad de diseño y documentación.
+
+### Elección consciente de topologías:
+
+A continuación se enumeran las topologías de acuerdo con sus beneficios base:
+
+- **Simplicidad y administración:** Estrella o árbol.
+
+- **Máxima resiliencia:** Malla (total o parcial).
+
+- **Pequeño y temporal:** Bus o estrella simple.
+
+- **Necesidades mixtas y gran volúmen:** Mixta.
+
+- **Enlace dedicado entre puntos:** Punto a punto.
+
+Para lograr elegir correctamente, conviene cuestionarse:
+
+- ¿Qué pasa si se cae el nodo central?
+
+- ¿Qué tan fácil es agregar veinte equipos más?
+
+- ¿Cuánto tráfico se espera y cómo afecta al sistema?
+
+- ¿Qué tan rápido se deben resolver las fallas?
+
+- ¿La prioridad es el costo o la continuidad del servicio?
+
+## Categorización de Redes por Alcance
+
+### *Personal Area Network* (PAN):
+
+En una red de muy corto alcance (alrededor de diez metros), conectando dispositivos bluetooth principalmente. Es de bajo consumo, requiere poca infraestructura, es barata y fácil de montar, aunque cuenta con velocidad y alcance limitados.
+
+### *Local Area Network* (LAN):
+
+Cubre una casa, edificio o campus pequeño. Permite compartir recursos (impresoras, servidores e internet). Usualmente se conecta vía ethernet o Wi-Fi y alcanza velocidades de hasta 106bps; aunque requiriendo una infraestructura dedicada y, por lo tanto, mantenimiento. 
+
+### *Metropolitan Area Network* (MAN):
+
+Cubre una ciudad conectando múltiples *LAN* mediante cables de cobre, fibra óptica o incluso inalámbricamente, recursos con los que es capaz de transferir los datos entre grandes distancias dentro de espacios urbanos; sin embargo, tiene costos relativamente elevados y una gran complejidad por escala.
+
+### *Radio Access Network* (RAN):
+
+Proporciona conectividad inalámbrica entre los dispositivos móviles y el núcleo de la red; es decir, utiliza las ondas de radio para conectarse a la internet vía datos móviles. Cuenta con una gran escalabilidad y permite la movilidad del usuario, pero tiene grandes costos operativos, interferencias y huecos de cobertura en zonas rurales.
+
+### *Wide Area Network* (WAN):
+
+Cubre áreas extensas (países o continentes), permitiendo comunicación a grandes distancias y operación global mediante satélites, líneas arrendadas y cables submarinos. Se ve limitado por tolerancia, ancho de banda y alta dependencia de los proveedores. 
+
