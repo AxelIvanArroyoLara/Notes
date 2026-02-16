@@ -1,10 +1,7 @@
-A continuación se presentan los **apuntes explicados y extendidos** del documento _“Transfer techniques in Core networks”_ , redactados en tercera persona, en estilo formal y priorizando la prosa, integrando toda la información de las diapositivas e incluyendo la descripción de los diagramas cuando corresponde.
 
----
+## Introducción
 
-# Transfer Techniques in Core Networks
-
-## 1. Introducción a las técnicas de transferencia en redes núcleo
+En las 
 
 En las redes núcleo (core networks), las técnicas de transferencia hacen referencia a la forma en que los datos se transmiten a través de la red. Existen dos métodos principales: **circuit switching (conmutación de circuitos)** y **packet switching (conmutación de paquetes)**. Cada uno posee mecanismos distintos de operación, ventajas específicas y escenarios de aplicación particulares.
 
