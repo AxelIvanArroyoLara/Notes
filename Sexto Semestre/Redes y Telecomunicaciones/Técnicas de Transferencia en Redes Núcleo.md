@@ -1,86 +1,75 @@
-
 ## Introducción
 
-En las 
+En las *redes núcleo*, las *técnicas de transferencia* hacen referencia a la manera en la que los datos se transmiten a través de una red. Existen dos métodos principales:
 
-En las redes núcleo (core networks), las técnicas de transferencia hacen referencia a la forma en que los datos se transmiten a través de la red. Existen dos métodos principales: **circuit switching (conmutación de circuitos)** y **packet switching (conmutación de paquetes)**. Cada uno posee mecanismos distintos de operación, ventajas específicas y escenarios de aplicación particulares.
+- **Conmutación de circuitos** (*circuit switching*).
 
-El esquema general presentado en el documento muestra que:
+- **Conmutación de paquetes** (*packet switching*).
 
-- La **conmutación de circuitos** se relaciona con tecnologías como **PSTN** (Public Switched Telephone Network) y **GSM**, utilizando técnicas de multiplexación como **FDM** (Frequency Division Multiplexing) y **TDM** (Time Division Multiplexing).
-    
-- La **conmutación de paquetes** se asocia con redes como **Internet (TCP/IP)** y tecnologías como **ATM** y **MPLS**, operando bajo dos modelos: **Virtual Circuit** y **Datagram**.
-    
+En donde cada uno opera de manera diferente, manteniendo una serie de ventajas específicas y escenarios de aplicación particulares. 
 
----
-
-# 2. Circuit Switching (Conmutación de Circuitos)
-
-## 2.1. Descripción general
-
-La conmutación de circuitos consiste en establecer un camino de comunicación dedicado entre dos extremos de la red durante toda la duración de la sesión. Todos los datos viajan por ese mismo camino como un flujo continuo de bits, sin división en paquetes.
-
-No existe el concepto de paquete durante la transmisión; el flujo es continuo y la tasa de datos es fija, lo que garantiza una conexión consistente y predecible.
-
-Un ejemplo clásico es la **Public Switched Telephone Network (PSTN)**, utilizada en sistemas telefónicos tradicionales, donde se requiere calidad constante de voz.
+![[Pasted image 20260216010426.png]]
 
 ---
 
-## 2.2. Funcionamiento del Circuit Switching
+## Conmutación de Circuitos (*circuit switching*)
+
+### Descripción general:
+
+La **conmutación de circuitos** consiste en el establecimiento de un camino de comunicación dedicado entre los dos extremos de la red durante la duración total de la sesión. Absolutamente todos los datos viajan a través de un mismo camino como un flujo continuo de *bits*, sin división de paquetes; es decir, la tasa de datos es fija, garantizando así una conexión consistente y predecible.
+
+Un ejemplo de este sistema, es el *Public Switched Telephone Network* (PSTN), utilizada para los sistemas telefónicos tradicionales, en donde se requiere una calidad constante en la voz.
+
+
+### Funcionamiento:
 
 El funcionamiento se divide en tres fases fundamentales:
 
-### 1. Establecimiento de conexión (Connection Establishment)
+#### 1. Establecimiento de conexión (Connection Establishment):
 
-Antes de iniciar la comunicación, se reserva un camino a través de la red mediante un proceso llamado **signalling (señalización)**.
+Previo a comenzar el proceso de comunicación, se reserva un camino particular a través de la red utilizando un proceso conocido como **señalización** (*signaling*), fase durante la cual:
 
-Durante esta fase:
+- Cada uno de los *nodos* intermedios almacena información acerca de la conexión.
 
-- Cada nodo intermedio almacena información sobre la conexión.
-    
-- Se reservan recursos en todos los nodos y enlaces que forman parte del camino.
-    
+- Se reservan recursos en todos los *nodos* y *enlaces* que forman parte del camino establecido.
 
-No hay transmisión de datos hasta que el circuito esté completamente establecido.
+No se lleva a cabo la transmisión de los datos hasta que el circuito se encuentra completamente establecido.
 
-### 2. Transmisión de datos
+#### 2. Transmisión de datos:
 
-Una vez establecido el circuito:
+Una vez habiéndose establecido el circuito:
 
-- Los datos fluyen como un flujo continuo.
-    
-- No es necesario incluir dirección de destino en cada unidad transmitida.
-    
-- Los nodos intermedios ya conocen el camino, por lo que simplemente reenvían los bits.
-    
+- Los datos se transmiten a manera de un flujo contínuo.
 
-### 3. Liberación de conexión (Connection Teardown)
+- No es necesario incluir la dirección de destino para cada unidad transmitida.
 
-Al finalizar la comunicación:
+- Los nodos intermedios, al ya conocer el camino, simplemente se encargan del reenvío de los *bits*.
 
-- Se libera el circuito.
-    
-- Se liberan los recursos reservados.
-    
-- La red puede reutilizarlos para otros usuarios.
-    
+#### 3. Liberación de conexión (Connection Teardown):
+
+Al finalizar el proceso de comunicación:
+
+- El circuito es liberado.
+
+- Los recursos reservados se liberan.
+
+- La red puede reutilizar el circuito y los recursos para otros usuarios.
 
 ---
 
-## 2.3. Signalling en redes de conmutación de circuitos
+### Signalling en redes de conmutación de circuitos
 
-La señalización es el intercambio de información de control necesario para:
+El proceso de *señalización* puede definirse como el intercambio de información de control necesario para:
 
-- Establecer la conexión.
-    
-- Mantenerla.
-    
-- Finalizarla correctamente.
-    
+- Establecer las conexiones.
 
-### Funciones principales del signalling
+- Mantener las conexiones.
 
-1. **Connection set-up**
+- Finalizar adecuadamente las conexiones.
+
+#### Funciones principales del signalling
+
+1. ***Connection set-up***
     
     - Localiza al receptor.
         
@@ -88,7 +77,7 @@ La señalización es el intercambio de información de control necesario para:
         
     - Crea el circuito.
         
-2. **Connection maintenance**
+2. ***Connection maintenance***
     
     - Supervisa la calidad.
         
@@ -96,102 +85,70 @@ La señalización es el intercambio de información de control necesario para:
         
     - Administra el ancho de banda disponible.
         
-3. **Connection teardown**
+3. ***Connection teardown***
     
     - Termina la conexión.
         
     - Libera recursos.
         
 
----
-
-## 2.4. In-band vs Out-of-band Signalling
+### *In-band vs Out-of-band Signalling*:
 
 Existen dos formas de señalización:
 
-### A) In-band signalling
+#### *In-band signalling*:
 
 En este esquema:
 
-- La señalización utiliza el mismo canal que los datos del usuario.
-    
-- No requiere canales adicionales.
-    
+- La *señalización* utiliza el mismo canal que los datos del usuario.
+
+- No requiere de canales adicionales.
+
 - Reduce el ancho de banda disponible para datos.
-    
+
 - Puede comprometer la integridad del canal.
-    
 
 Ejemplo: **PSTN**.
 
-**Descripción del diagrama (página 9):**
+![[Pasted image 20260216012631.png]]
 
-Se observa que la información de control y la información de datos viajan exactamente por el mismo camino y utilizan los mismos recursos para establecer el circuito.
+En este esquema, tanto la información de control como la información de datos, comparten el mismo camino, utilizando los mismos recursos para establecer el circuito deseado.
 
-Representación simplificada:
+#### *Out-of-band signalling*:
 
-```
-Origen ----[Nodo]----[Nodo]---- Destino
-      (Datos + Señalización por el mismo camino)
-```
+En este formato:
 
----
+- La *señalización* viaja a través de un canal separado.
 
-### B) Out-of-band signalling
-
-En este caso:
-
-- La señalización viaja por un canal separado.
-    
 - El canal principal se dedica exclusivamente a datos.
-    
+
 - Mayor seguridad y confiabilidad.
-    
+
 - Mayor complejidad e infraestructura adicional.
-    
 
 Ejemplo: **GSM**.
 
-**Descripción del diagrama (página 11):**
+![[Pasted image 20260216013002.png]]
 
 El camino de señalización es distinto al de datos. Ambos no comparten recursos.
 
-Representación simplificada:
+---
 
-```
-Camino datos:        A ----- B ----- C
-Camino señalización: A == S == S == C
-```
+## Multiplexación
+
+La técnica de **multiplexación** permite la combinación de múltiples señales o flujos de datos en un único canal de comunicación, optimizando así el manejo del ancho de banda.
+
+Para el lado del *receptor*, se realiza el proceso inverso, conocido como **demultiplexación**.
+
+![[Pasted image 20260216013333.png]]
 
 ---
 
-# 3. Multiplexing
+## *Time Division Multiplexing* (TDM)
 
-La multiplexación es una técnica que permite combinar múltiples señales o flujos de datos en un único canal de comunicación, optimizando el uso del ancho de banda.
+El TDM funciona mediante la división de un solo *canal* de comunicación en intervalos de tiempo (*time slots*), asignando cada intervalo a una conexión distinta. De esta manera, se utiliza todo el ancho de banda, pero solo durante intervalos de tiempo pequeños.
 
-En el receptor, se realiza el proceso inverso llamado **demultiplexación**.
-
-**Descripción del diagrama (página 12):**
-
-Se muestra un bloque MUX con múltiples entradas y una sola salida (1 link, n channels), y un bloque DEMUX que separa nuevamente las señales.
-
-```
-Entradas → [MUX] → Canal único → [DEMUX] → Salidas
-```
-
----
-
-# 4. Time Division Multiplexing (TDM)
-
-## 4.1. Concepto
-
-TDM divide el canal de comunicación en intervalos de tiempo (time slots), asignando cada intervalo a una conexión distinta.
-
-El ancho de banda completo se utiliza, pero sólo durante pequeños intervalos de tiempo.
-
----
-
-## 4.2. Funcionamiento
+### Funcionamiento:
 
 1. El medio se divide en time slots.
     
@@ -202,34 +159,30 @@ El ancho de banda completo se utiliza, pero sólo durante pequeños intervalos d
 4. El receptor reconstruye los datos según la posición temporal.
     
 
----
+### Características:
 
-## 4.3. Características
-
-- La secuencia de slots asignados a una fuente se llama canal.
+- La secuencia de *slots* asignados a una fuente se llama *canal*.
     
 - Es síncrono porque la asignación es fija.
     
-- Los slots se reservan incluso si no hay datos.
+- Los *slots* se reservan incluso si no hay datos.
     
-- Puede operar a nivel de bits o bytes.
+- Puede operar a nivel de *bits* o *bytes*.
     
 - No es obligatorio asignar intervalos equitativamente.
     
 
 Ejemplo: **GSM** utiliza TDM para asignar llamadas en la misma frecuencia.
 
----
-
-# 5. Frequency Division Multiplexing (FDM)
-
-## 5.1. Concepto
-
-FDM divide el ancho de banda en múltiples bandas de frecuencia no superpuestas, cada una asignada a una conexión.
+![[Pasted image 20260216082802.png]]
 
 ---
 
-## 5.2. Funcionamiento
+## *Frequency Division Multiplexing* (FDM)
+
+El esquema FDM divide el ancho de banda en múltiples bandas de frecuencia no superpuestas, en donde cada una se asigna a una conexión individual.
+
+### Funcionamiento:
 
 1. Se divide el espectro total en sub-bandas.
     
@@ -240,24 +193,24 @@ FDM divide el ancho de banda en múltiples bandas de frecuencia no superpuestas,
 4. En el receptor se demodula.
     
 
----
-
-## 5.3. Características
+### Características:
 
 - Canales activos simultáneamente.
     
-- Uso de bandas de guarda (guard bands).
+- Uso de bandas de guarda (*guard bands*).
     
 - Se asigna banda aunque no haya datos.
     
 
 Ejemplo: PSTN analógico.
 
+![[Pasted image 20260216083117.png]]
+
 ---
 
-# 6. Ventajas y Desventajas de Circuit Switching
+## Ventajas y Desventajas de Circuit Switching
 
-## Ventajas
+### Ventajas:
 
 - Throughput constante.
     
@@ -270,7 +223,7 @@ Ejemplo: PSTN analógico.
 - Modelo simple de comunicación.
     
 
-## Desventajas
+### Desventajas:
 
 - Desperdicio de ancho de banda.
     
@@ -283,24 +236,22 @@ Ejemplo: PSTN analógico.
 
 ---
 
-# 7. Packet Switching (Conmutación de Paquetes)
+## Conmutación de Paquetes (*Packet Switching*)
 
-## 7.1. Descripción general
+### Descripción general:
 
-Los datos se dividen en paquetes (~1000 bytes), cada uno con:
+Los datos regularmente se dividen en paquetes con un tamaño aproximado de *1000 bytes* cada uno, conteniendo:
 
 - Payload (datos).
     
 - Header (dirección origen/destino, secuencia).
     
 
-No existe camino dedicado.
+En este esquema, no existe un camino dedicado como en la *conmutación de circuitos*.
 
 Ejemplo: Internet (TCP/IP), ATM, MPLS.
 
----
-
-## 7.2. Funcionamiento
+### Funcionamiento:
 
 1. Fragmentación.
     
@@ -309,18 +260,13 @@ Ejemplo: Internet (TCP/IP), ATM, MPLS.
 3. Reensamblaje en destino.
     
 
----
+### Conceptos clave:
 
-## 7.3. Conceptos clave
+#### Packet:
 
-### Packet
+- ***Packet:*** Unidad estructurada que sigue modelo OSI/TCP-IP.
 
-Unidad estructurada que sigue modelo OSI/TCP-IP.
-
-### Frame
-
-Unidad enviada directamente por el enlace físico.  
-Encapsula al paquete.
+- ***Frame:*** Unidad enviada por el enlace físico. Encapsula el paquete.
 
 Relación:
 
@@ -332,7 +278,7 @@ Frame
 
 ---
 
-# 8. Redes enrutadas
+## Redes enrutadas
 
 Existen dos enfoques:
 
@@ -343,7 +289,7 @@ Existen dos enfoques:
 
 ---
 
-# 9. Packet Routing (Datagram)
+## *Packet Routing* (*Datagram*)
 
 Características:
 
@@ -360,17 +306,17 @@ No se mantiene estado de conexión.
 
 ---
 
-# 10. Packet Commutation (Virtual Circuits)
+## *Packet Commutation* (*Virtual Circuits*)
 
 Características:
 
 - Connection-oriented.
     
-- Se establece VC mediante signalling.
+- Se establece VC mediante *signalling*.
     
 - Todos los paquetes siguen mismo camino.
     
-- Uso de identificadores (labels).
+- Uso de identificadores (*labels*).
     
 - Paquetes de tamaño fijo.
     
@@ -381,9 +327,7 @@ Características:
 
 Los nodos mantienen tablas de conmutación con identificadores de entrada y salida.
 
----
-
-# 11. Establecimiento de Virtual Circuit
+### Establecimiento de *Virtual Circuit*:
 
 Incluye:
 
@@ -400,7 +344,7 @@ Incluye:
 
 ---
 
-# 12. Similitudes entre VC y Datagram
+## Similitudes entre *Virtual Circuit* y *Datagram*
 
 - Ambos dividen datos en paquetes.
     
@@ -408,19 +352,19 @@ Incluye:
     
 - Ambos requieren buffers.
     
-- Ambos pueden multiplexar enlaces.
+- Ambos pueden *multiplexar* enlaces.
     
 
 ---
 
-# 13. Diferencias entre VC y Datagram
+# Diferencias entre *Virtual Circuit* y *Datagram*
 
-|Aspecto|Virtual Circuit|Datagram|
-|---|---|---|
-|Lookup|Identificador VC|Dirección completa|
-|Inicio transmisión|Requiere signalling previo|Inmediato|
-|Estado en nodos|Sí|No|
-|QoS|Posible|Difícil|
+| Aspecto            | Virtual Circuit            | Datagram           |
+| ------------------ | -------------------------- | ------------------ |
+| Lookup             | Identificador VC           | Dirección completa |
+| Inicio transmisión | Requiere signalling previo | Inmediato          |
+| Estado en nodos    | Sí                         | No                 |
+| QoS                | Posible                    | Difícil            |
 
 ---
 
@@ -431,13 +375,3 @@ La conmutación de circuitos fue diseñada principalmente para voz, donde se req
 La evolución de redes núcleo modernas favorece la conmutación de paquetes por su flexibilidad, eficiencia y escalabilidad, aunque los modelos de circuito virtual permiten combinar ventajas de ambos enfoques mediante mecanismos de QoS y rutas preestablecidas.
 
 ---
-
-Si lo deseas, puedo ahora:
-
-- Convertir estos apuntes a PDF.
-    
-- Hacer un mapa conceptual.
-    
-- Generar una tabla comparativa más detallada para estudiar.
-    
-- Crear preguntas tipo examen.
