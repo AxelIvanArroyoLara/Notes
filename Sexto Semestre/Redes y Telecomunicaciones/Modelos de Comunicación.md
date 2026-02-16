@@ -1,0 +1,114 @@
+## Introducción
+
+Un **modelo de comunicación** es un marco conceptual que indica cómo se transmite la información desde un **emisor** hasta un **receptor** a través de un medio. Su valor no es decorativo, sino que sirve para pensar la comunicación como un proceso con etapas y componentes identificables, de modo que es posible detectar problemas (retrasos, interferencias, pérdidas o malentendidos) y diseñar sistemas más eficientes y confiables.
+
+En ingeniería y redes, hablar de un *modelo* implica responder con claridad tres preguntas:
+
+- ¿En qué dirección viaja la señal? (*unidireccional* o *bidireccional*).
+
+- ¿Quiénes participan y qué rol juega cada uno de ellos?
+
+- ¿Qué pasos deben ocurrir para que el intervalo sea exitoso?
+
+---
+## Elementos de un Modelo Básico de Comunicación
+
+En un *modelo* básico, la comunicación se entiende como una cadena en donde cada pieza cumple una función específica.
+### Emisor, receptor, mensaje y canal:
+
+El **emisor** (*source*) es la entidad que genera y envía el dato. El **receptor** (*destination*) es quien recibe e interpreta el mismo. Entre ambos viaja el **mensaje**, que es la información en sí misma (por ejemplo, un texto, una señal, un archivo o una orden de control). Para que el *mensaje* se desplace, necesita de un **medio** o **canal**, mismo que puede ser físico (cable o fibra óptica) o lógico (una interfaz inalámbrica, enlace virtual, etc.).
+
+Lo más importante a destacar es el hecho de que el *canal* no es neutral, sino que sus características físicas o lógicas condicionan el tipo de señal, la velocidad, el alcance y la estabilidad del intercambio.
+### Ruido y retroalimentación:
+
+En la práctica, casi nunca existe un *canal* perfecto, motivo por el que se introduce el concepto de **ruido**, que puede ser definido como cualquier interferencia que *deforma* o *distorsiona* el mensaje; desde interferencia electromagnética en un cable, hasta congestión o pérdidas en una red.
+
+Adicionalmente, muchos sistemas incorporan **retroalimentación**: una respuesta del *receptor* que confirma si el mensaje llegó y fue comprendido correctamente (por ejemplo un ACK en protocolos de red). La *retroalimentación* no siempre existe, pero cuando está presente, incrementa la confiabilidad porque permite corregir errores o reintentar envíos:
+
+![[Pasted image 20260215220219.png]]
+
+---
+## Modos de Transmisión
+
+La manera en la que viajan los *bits* impacta costo, complejidad y desempeño.
+### Transmisión paralela:
+
+En **transmisión paralela**, se envían varios *bits* al *mismo tiempo*, utilizando múltiples *líneas* o *canales* en paralelo. La intuición es directa: si se envían 8 *bits* en 8 *líneas* simultáneas, se completa el *byte* de golpe.
+
+En distancias cortas, esto puede llevar a una alta velocidad y con protocolos relativamente simples. El problema aparece cuando el *canal* crece o el entorno se complica: las *líneas* no siempre se comportan igual y surge el reto de la **sincronización** (que todos los *bits* llegan alineados), además de un mayor costo y degradación de señal. Por tales motivos, se asocia más a una comunicación interna o de corta distancia.
+### Transmisión serial:
+
+En **transmisión serial**, los *bits* se envían *uno tras otro* a través de un *mismo canal*. Esto reduce *hardware* y costos, soliendo ser más robusto para distancias largas, aunque requiere protocolos más cuidadosos para sincronizar y controlar errores. Tales bondades le permiten fungir como la base principal en tecnologías modernas y enlaces cotidianos como *ethernet*, USB, fibra óptica, comunicación inalámbrica, etc.
+
+---
+## Modos de Transmisión según el Tiempo y la Sincronización
+
+El foco cambia del uso de las *líneas* a la *coordinación* en el ritmo entre un *emisor* y un *receptor*.
+### Transmisión asíncrona:
+
+En **asincronía**, no existe un *reloj compartido* constante entre *emisor* y *receptor*. En su lugar, se encapsula el mensaje con ***bits* de inicio** (*start*) y ***bits* de parada*** (*stop*) para marcar el comienzo y el final de cada unidad enviada (típicamente un *byte* o *caracter*). Esto hace que cada bloque sea autosincronizable y permite que existan tiempos muertos sin romper el sistema.
+
+La principal ventaja de este sistema es la simplicidad, aunque puede llegar a tener *overhead*; es decir, los *bits* de comienzo y de parada pueden reducir la eficiencia real. 
+
+Este tipo de transmisión es típica en *RS-232*, *RS-485* y *UART* (muy común en sistemas embebidos).
+### Transmisión síncrona:
+
+En **sincronía**, el envío ocurre como un flujo continuo de *bits* bien organizado en ***frames***, usualmente sin *start* y *stop* por *byte*, ya que el ritmo está gobernado por un *reloj compartido* o un mecanismo de sincronización estable. Este procedimiento reduce *overhead*, permitiendo alta velocidad y baja latencia; especialmente en transferencias de volumen.
+
+El costo es la *complejidad*: el establecimiento de la sincronización y la sensibilidad a problemas como el *clock drift* (desfase de reloj) requieren mucho cuidado. Un ejemplo típico citado en redes es *ethernet*.
+
+### Transmisión isócrona:
+
+La **transmisión isócrona** busca garantizar un *ritmo constante*: los datos llegan con tiempos predecibles e intervalos regulares; crucial cuando llegar a tiempo importa más que reintentar hasta llegar a la perfección. Se utiliza principalmente en aplicaciones en *tiempo real*: audio, voz y video.
+
+Su ventaja principal es que evita variaciones grandes respecto al tiempo de llegada (muy útil para evitar interrupciones), aunque para esto suele requerir un ancho de banda reservado y ser más complicado de implementar.
+
+---
+## Modos de Transmisión por Direcciones
+
+Este apartado describe el concepto de **direccionalidad** del intercambio de datos:
+
+### Simplex:
+
+En **simplex** la comunicación es *unidireccional*: un elemento solo transmite y el otro solo recibe, sin retorno. Es fácil, barato y evita colisiones porque no existe una competencia por el canal en dos sentidos.
+
+Se ve usualmente implementado en la radio, la televisión y teclados (comunicación de una tecla con la computadora). 
+
+### Half duplex:
+
+En ***half duplex*** ambos componentes pueden transmitir, pero no al mismo tiempo, sino que se turnan, ahorrando recursos y adecuándose a anchos de banda limitados, pero reduciendo su velocidad efectiva cuando la interacción es intensa; esto, debido a que cada lado debe esperar a su turno.
+
+En sistemas antiguos como los *walkie-talkies* se utilizaba esta tecnología, motivo por el que estos dispositivos no eran capaces de soportar envío y recepción simultáneamente.
+
+### Full duplex:
+
+En ***full duplex*** ambos son capaces de transmitir y recibir de forma *simultánea*; la opción natural para comunicación en tiempo real con alto desempeño. Por sus capacidades, se elevan la complejidad y los costos. 
+
+Este sistema se utiliza regularmente en telefonía y *ethernet* conmutada.
+
+---
+
+La posibilidad de *duplex* se define por una combinación entre el *medio físico* (algunos facilitan *full duplex* y otros requieren de técnicas avanzadas), el *hardware* (interfaces, tranceptores, *switches*) y los *protocolos* (reglamentos) para compartir el medio y evitar interferencias, además de coordinar transmisión y recepción.
+
+---
+
+## Modelos de Comunicación a Nivel Arquitectura
+
+Además del flujo de *bits*, también existe el modelo de cómo se organizan los participantes:
+
+### Cliente - servidor:
+
+En **cliente - servidor**, el primero solicita recursos y el segundo responde proveyéndolos. En un modelo centralizado, facilita administración y control (incluida seguridad), pero tiene riesgos de punto único de falla y cuello de botella si el servidor recibe demasiadas solicitudes. Suele ser muy utilizado en la navegación web y gestión de correos electrónicos. 
+
+### *Peer to peer* (P2P):
+
+En ***peer to peer*** no existe una autoridad central, sino que los *peers* pueden actuar como *clientes* o *servidores* por igual, lo que puede brindar tolerancia a fallos y escalabilidad, aunque complicando la gestión y ocasionando variaciones en el rendimiento dependiendo de la disponibilidad y calidad de los *peers*.
+
+### *Publisher - subscriber* (pub - sub):
+
+En este modo, un ***publisher*** publica varios mensajes dentro de un *canal especializado* dirigido hacia un tópico particular, en donde los *subscribers* reciben lo que les interesa según su suscripción. Normalmente existe un *broker* que intermedia la entrega. La gran ventaja es el *desacoplamiento*: el *emisor* no necesita conocer a los *receptores*, por lo que se facilita la comunicación uno a muchos, aunque teniendo una mayor complejidad y posibilidades de que el *broker* se convierta en el punto único de falla si no se diseña con redundancia. Se utilizan en *IoT* y sistemas de notificaciones.
+
+---
+
+
+

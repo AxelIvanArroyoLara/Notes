@@ -1,4 +1,4 @@
-# Telecomunicaciones
+## Telecomunicaciones
 
 Las **telecomunicaciones** pueden ser entendidas como una serie de sistemas para comunicar y transmitir información a larga distancia; esto, utilizando medios eléctricos a electromagnéticos. El punto esencial es el enfoque físico: un mensaje debe convertirse en una *señal* (secuencia de corrientes y voltajes) que se prepara para viajar a través de procedimientos como la **codificación** y la **modulación** hasta llegar al dispositivo receptor.
 
@@ -24,7 +24,7 @@ Una **red de computadoras** se define como un conjunto de dispositivos intercone
 Las redes se diseñan para conectar dispositivos y permitir el intercambio de datos, pero su atención principal está en el sector lógico: protocolos como *TCP / IP*, organización de datos, enrutamiento y servicios. En redes, el problema típico no es solo que la señal llegue, sino que también lo haga hacia el destino correcto, con reglas, control y utilidad. 
 
 ---
-# Diferencias entre Telecomunicaciones y Redes
+## Diferencias entre Telecomunicaciones y Redes
 
 La diferencia puede ser resumida de la siguiente manera:
 
@@ -36,7 +36,7 @@ Esto permite evitar confusiones. Por ejemplo, se puede tener una transmisión f�
 
 ---
 
-# Categorización de Redes por Topología
+## Categorización de Redes por Topología
 
 La **topología** es la manera en la que se organizan los dispositivos (**nodos**) y sus enlaces. Se entiende por dos capas:
 
@@ -165,3 +165,4 @@ Proporciona conectividad inalámbrica entre los dispositivos móviles y el núcl
 
 Cubre áreas extensas (países o continentes), permitiendo comunicación a grandes distancias y operación global mediante satélites, líneas arrendadas y cables submarinos. Se ve limitado por tolerancia, ancho de banda y alta dependencia de los proveedores. 
 
+---
