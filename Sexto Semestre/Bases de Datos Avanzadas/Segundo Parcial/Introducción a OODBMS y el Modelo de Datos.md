@@ -87,50 +87,49 @@ Todo esto, con el objetivo de lograr un DBMS completo y extensible.
 
 En el actual enfoque, un sistema orientado a objetos se describe a través de diversos modelos complementarios:
 
----
----
-
-1. **Modelo de datos (estructura / parte estática):** define cómo se representan los objetos y sus valores, incluyendo colecciones y estructuras complejas.
-    
-2. **Modelo de comportamiento (operaciones / parte dinámica):** define qué operaciones pueden ejecutarse sobre los objetos.
-    
-3. **Modelo de nombres (puntos de entrada):** describe cómo se localizan y referencian los objetos dentro de la base.
-    
-4. **Modelo de persistencia (qué es persistente y qué no):** determina qué entidades sobreviven a la ejecución del programa y cómo se gestionan.
-    
+- **Modelo de datos (estructura y parte estética):** Define la manera en la que se representan los objetos y sus valores, incluyendo colecciones y estructuras complejas.
+	
+- **Modelo de comportamiento (operaciones y parte dinámica):** Se encarga de la forma en la que se representan los objetos y sus valores, incluyendo colecciones y estructuras complejas.
+	
+- **Modelo de nombres (puntos de entrada):** Permite describir cómo se localizan y se referencían los objetos dentro de la base definida.
+	
+- **Modelo de persistencia:** Determina qué entidades sobreviven tras el proceso de ejecución, así como su gestión.
+	
 
 ---
 
-## ODMG: estandarización para bases de datos orientadas a objetos
+## ODMG: Estandarización para Bases de Datos Orientadas a Objetos
 
-El **Object Database Management Group (ODMG)** surge como un grupo para definir estándares de bases de datos orientadas a objetos, asociado en cierta medida a OMG (Object Management Group). Se indica su creación a mediados de 1991, con especificaciones como ODMG-93, y revisiones posteriores (95, 97 como ODMG 2.0, 99 como ODMG 3.0 con incorporación de Java).
+El ***Object Database Management Group***, ODMG por sus siglas, nace como un grupo capaz de definir estándares respecto al comportamiento de las bases de datos orientadas a objetos. 
 
-El objetivo es asegurar **portabilidad** entre productos, normalizando un modelo de datos y lenguajes orientados a objetos. La especificación abarca: **Object Model**, **ODL** (Object Data Definition Language), **OML** (Object Manipulation Language), **OQL** (Object Query Language) e interfaces para **C++**, **Smalltalk** y **Java**.
-
----
-
-## Modelo de datos orientado a objetos: conceptos clave
-
-El modelo de datos OO incorpora:
-
-- **Objetos complejos:** no solo valores atómicos, sino tuplas/estructuras, bolsas (bags), conjuntos (sets), listas (lists), etc.
-    
-- **Asociaciones entre objetos:** relaciones 1:1, 1:N y N:M.
-    
-- **Identidad de objeto:** independencia respecto al valor, referencias y compartición de objetos.
-    
-- **Clases y tipos:** para caracterizar objetos de la misma naturaleza.
-    
-- **Herencia:** relación de especialización “is a”, que induce un orden parcial sobre tipos/clases.
-    
-- **Independencia entre modelos lógico y físico:** la estructura conceptual no debe depender de cómo se almacena físicamente.
-    
+El principal objetivo de esta tecnología, es el de lograr asegurar la *portabilidad* entre distintos productos, llevando a cabo la normalización de un modelo de datos y lenguajes orientados a objetos. Esta especialización abarca: **Object Model**, **ODL** (Object Data Definition Language), **OML** (Object Manipulation Language), **OQL** (Object Query Language) e interfaces para **C++**, **Smalltalk** y **Java**.
 
 ---
 
-## Objetos como “datos + comportamiento”: encapsulación e interfaz
+## Modelo de Datos Orientado a Objetos
 
-Un objeto integra **estado (datos)** y **comportamiento (métodos)**. La encapsulación implica que el valor interno se considera privado, y que el acceso o modificación se realiza mediante métodos (por ejemplo, `getName`, `setName`, `getCapital`, `addCity`). Además, los valores pueden ser complejos (estructuras anidadas y colecciones), y cada objeto posee un **identificador único**. Los métodos constituyen la **interfaz del objeto**; en términos OO, el objeto recibe mensajes y ejecuta operaciones.
+El modelo de datos Orientado a Objetos permite la incorporación de los siguientes elementos:
+
+- **Objetos complejos:** No solo se tienen los valores atómicos, sino igualmente tuplas, estructuras, *bags*, conjuntos (*sets*), listas (*lists*), etc.
+    
+- **Asociaciones entre objetos:** Relaciones 1:1, 1:N y N:M.
+    
+- **Identidad de objeto:** Cada objeto tiene su propio identificador e independencia respecto a las literales de sus atributos.
+    
+- **Clases y tipos:** Para caracterizar objetos de la misma naturaleza.
+    
+- **Herencia:** Relación de especialización “*is a*”, que induce un orden parcial sobre tipos/clases.
+    
+- **Independencia entre modelos lógico y físico:** La estructura conceptual no debe depender de cómo se almacena físicamente.
+    
+
+### Objetos como Unión entre Datos y Comportamiento: Encapsulación e Interfaz
+
+Un **objeto** es capaz de integrar **estado (datos)** y **comportamiento (métodos)**. El concepto de **encapsulación** implica que los valores internos de los atributos se consideran como *privados*, y que el acceso o la modificación de estos se lleva a cabo a través de métodos (por ejemplo, `getName`, `setName`, `getCapital`, `addCity`). 
+
+Una de las ventajas que tiene el modelo orientado a objetos respecto al relacional, es la capacidad de hacer uso de los denominados **valores complejos**, mismos entre los que se encuentran diferentes tipos de estructuras anidadas y colecciones. 
+
+Adicionalmente, cada objeto posee su propio *identificador único*. Por su parte, los métodos llegan representados a manera de **interfaz**; en términos propios del paradigma, el objeto simplemente se encarga de recibir mensajes y ejecutar las operaciones.
 
 **Aviso de diagrama en las diapositivas:** en el material se muestra un esquema donde un objeto “Country” con identificador (por ejemplo `c1`) ofrece métodos como `setName/getName/getCapital/addCity` y contiene una estructura con atributos `name`, `capital` y `cities` que incluye referencias a otros objetos (por ejemplo `t1, t2, t3`). A continuación se describe en ASCII una versión fiel a la intención del diagrama.
 
@@ -146,13 +145,11 @@ Objeto Country (id: c1)
     )
 ```
 
----
+### Valores complejos:
 
-## Valores complejos: estructuras y colecciones anidadas
+Como descrito anteriormente, una de las características centrales del uso del modelo orientado a objetos, es la de poder representar valores complejos sin la necesidad de transformarlos en tablas, sino que pueden ser utilizados en su forma pura como atributos. Asúmase un ejemplo en el que una estructura de tipo *persona* contiene un conjunto de nombres y una dirección que, a su vez, es otra estructura. Este tipo de modelado permite la captura de jerarquías de información de una forma muy directa:
 
-Una característica central es la posibilidad de representar valores complejos sin “aplanarlos” a tablas. Se ejemplifica con una estructura tipo persona que contiene un conjunto de nombres y una dirección que, a su vez, es otra estructura. Este tipo de modelado permite capturar jerarquías de información de forma directa.
-
-Ejemplo conceptual (mismo estilo del material):
+Ejemplo conceptual:
 
 - Una persona puede modelarse como `struct(name, first_names, birth_date, address)`.
     
@@ -161,13 +158,22 @@ Ejemplo conceptual (mismo estilo del material):
 - `address` puede ser un `struct(number, street, zip_code, town)` anidado.
     
 
----
+### Objetos y valores: 
 
-## Objetos y valores: formalización con identidad
+Existe una diferencia entre el concepto de **objeto** y **valor** de manera explícita. Los *objetos* pueden considerarse como un par ($i, v$) en donde ($i$) representa el identificador y ($v$) el valor (mismo que podría ser atómico o complejo). El *valor* tiene la capacidad de adaptar distintas formas: 
 
-Se diferencia entre **objeto** y **valor** de manera explícita. Un objeto puede verse como un par ((i, v)), donde (i) es el identificador y (v) el valor (que puede ser atómico o complejo). El valor puede adoptar distintas formas: átomo (integer, float, char, string, etc.), tupla (atributos), conjunto (set) o lista (list). Esta visión permite representar que dos objetos distintos pueden tener valores iguales pero identidades distintas.
+- **Átomo:** *Integer, float, char, string*, etc.
+	
+- **Tupla:** Atributos.
+	
+- **Conjunto:** *set*.
+	
+- **Lista:** *list*.
+	
 
-**Aviso de diagrama en las diapositivas:** se muestra un esquema que clasifica “atom / struct / set / list” como formas del valor asociado a un identificador. A continuación se resume en ASCII.
+Esta manera de determinación es la que permite representar que dos objetos diferentes podrían tener *valores* iguales pero *identidades* distintas.
+
+A continuación se muestra un esquema que clasifica “*atom / struct / set / list*” como formas del valor asociado a un identificador. A continuación se resume en ASCII.
 
 ```text
 Objeto = (id, valor)
@@ -181,25 +187,24 @@ valor puede ser:
 (En el esquema original se visualizan las formas: list / struct / atom / set)
 ```
 
----
+### Identificador (OID): 
 
-## Identificador (OID): referencia, compartición y diferencia entre identidad e igualdad
+El **identificador** de un objeto es un conjunto alfadecimal único que permite referenciarlo unitariamente dentro de la base (enfatizado por ODMG). Este elemento es completamente *independiente* de los valores dados a los atributos, lo que permite que exista la *compartición*, en donde varios objetos son capaces de referenciar a un mismo objeto, dando paso a la construcción de **grafos de composición**, inclusive mediante el uso de ciclos. 
 
-El **identificador** de un objeto funciona como referencia única (al menos dentro del alcance definido por el sistema, y en ODMG se enfatiza “dentro de la base”). Este identificador es **independiente** de los valores de atributos, lo que habilita la **compartición** (varios objetos pueden referenciar al mismo objeto) y permite construir **grafos de composición**, incluso con ciclos. Se remarca que **identidad** (ser el mismo objeto) y **igualdad** (tener el mismo valor) son conceptos diferentes.
+Un punto a resaltar es que la **identidad** y la **igualdad** se definen como conceptos completamente diferentes el uno del otro. De manera particular:
 
----
+- **Identidad:** Es única y no compartida. Se establece mediante un identificador que permite conocer exactamente el objeto al que se está referenciando.
+	
+- **Igualdad:** Hace referencia a objetos de las mismas clases que comparten los mismos valores, pero no son el mismo (gracias a sus *identificadores*).
+	
 
-## Ejemplo: México y sus ciudades como objetos relacionados
+#### Ejemplo: México y sus ciudades como objetos relacionados
 
 Se presenta un ejemplo con un objeto que representa a “México” y objetos que representan ciudades importantes. El país (por ejemplo `c1`) referencia a su capital (`t1`) y a un conjunto de ciudades (`t1, t2, t3`). Cada ciudad referencia de vuelta al país, mostrando enlaces bidireccionales a nivel conceptual (aunque el mecanismo exacto depende del modelo/ODL).
 
 La idea esencial es que el país no almacena “copias” planas de ciudades; mantiene **referencias** a objetos ciudad, y esas ciudades pueden compartirse o relacionarse sin duplicación.
 
----
-
-## Grafo de composición: representación estructural de referencias
-
-**Aviso de diagrama en las diapositivas:** se muestra un grafo donde `c1` apunta a `t1` como capital y a un conjunto `{t1, t2, t3}` como ciudades; cada ciudad apunta al país mediante `country`, y almacena su `name` y `population`. Esto se representa en ASCII como grafo dirigido de composición/referencias.
+A continuación se muestra un *grafo* donde `c1` apunta a `t1` como capital y a un conjunto `{t1, t2, t3}` como ciudades; cada ciudad apunta al país mediante `country`, y almacena su `name` y `population`. Esto se representa en ASCII como *grafo dirigido de composición/referencias*.
 
 ```text
 c1 (Country)
@@ -223,13 +228,11 @@ t3 (Town)
  |-- country --> c1
 ```
 
----
+### Clases y Tipos
 
-## Clase vs. tipo; instancia de clase vs. instancia de tipo
+Dentro del enfoque orientado a objetos, un **objeto** se define como la instancia de una *clase*, mientras que el *valor* es una instancia de un **tipo**. La clase define la estructura (por ejemplo, `name: String`, `capital: City`, `cities: Set<City>`), así como los *métodos* disponibles para las propias instancias. A través de esta distinción puede separarse el campo de los *valores* (*tipos*) de los *objetos* con *identidad* y *comportamiento* (*clases*).
 
-En el enfoque OO, **un objeto es instancia de una clase**, mientras que **un valor es instancia de un tipo**. La clase define la estructura (por ejemplo, `name: String`, `capital: City`, `cities: Set<City>`) y además define las operaciones (métodos) disponibles para las instancias. Esta distinción separa el mundo de los valores (tipos) del mundo de los objetos con identidad y comportamiento (clases).
-
-**Aviso de diagrama en las diapositivas:** se contrasta una instancia concreta `Country` con su definición de clase/tipo. A continuación se refleja la idea en ASCII.
+En el siguiente esquema se contrasta una instancia concreta `Country` con su definición de clase/tipo. A continuación se refleja la idea en ASCII.
 
 ```text
 Clase Country:
@@ -248,15 +251,13 @@ Instancia (objeto):
   )
 ```
 
----
-
-## Ejemplo de definición de clases y su grafo de tipos
+#### Ejemplo de definición de clases y su grafo de tipos
 
 Se ilustra la relación entre `Country` y `Town` (o “Town/City” según el ejemplo) mediante clases con atributos y referencias (relaciones). Por ejemplo, `Country` puede tener `towns: set<Town>`, y `Town` puede tener `town_state: Country` junto con su `population`. Esta estructura produce un grafo de referencias entre clases, reflejando la composición y asociación.
 
 ---
-
-## ODMG: modelo de objetos
+---
+## ODMG: Modelo de Objetos
 
 En el modelo ODMG:
 
