@@ -1,6 +1,6 @@
 
 > Rol: **Persona 5 — Embedded/Companion Software Engineer (Team Lead / Dossier Owner recomendado)**  
-> Objetivo macro: **integrar todo el pipeline** (datos → detección → mitigación → autopiloto → logs → replay → evidencia/dossier) con reproducibilidad.
+> Objetivo macro: **integrar todo el pipeline** (datos → detección → mitigación → autopiloto → logs → replay → evidencia/dossier) con reproducibilidad.e
 
 ---
 
