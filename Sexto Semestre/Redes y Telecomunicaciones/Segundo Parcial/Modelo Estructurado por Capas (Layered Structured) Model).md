@@ -23,69 +23,104 @@ Dentro del contexto de una red completa, suelen aparecer necesidades funcionales
 Esta lista muestra los diferentes problemas que pueden surgir respecto a la confiabilidad, identificación, selección de ruta, rendimiento y protección que se reparten entre las capas.
 
 ---
----
 
-## Capa de Aplicación (en el sentido funcional del modelo por capas)
+## Capa de Aplicación
 
-La capa de **aplicación** se entiende como la que provee servicios de red directamente a usuarios o programas, y define cómo las aplicaciones interactúan con la red (por ejemplo, navegar web, enviar correo o transferir archivos). Se mencionan como ejemplos de protocolos: **HTTP/HTTPS** para navegación web; **SMTP, POP3 e IMAP** para correo; **FTP/SFTP** para transferencia de archivos; **DNS** para traducir nombres de dominio a direcciones; y **SNMP** para administración y monitoreo de red.
+La **capa de aplicación** es la encargada de proveer servicios de red directamente a los usuarios o a los programas, definiendo la manera en la que las aplicaciones interactúan con la red; por ejemplo, navegar en internet, enviar correos electrónicos o transferir archivos. Los principales protocolos son los siguientes:
 
-Como ejemplo aplicado, cuando un usuario entra a un sitio web, la aplicación (navegador) utiliza HTTP/HTTPS para expresar solicitudes y respuestas (métodos, URLs, headers), mientras que “por debajo” otras capas se encargan del transporte confiable, el direccionamiento IP, el envío por Wi-Fi/Ethernet y la transmisión física.
+- **Navegación web:** HTTP y HTTPS
+- **Correo:** SMTP, POP3 e IMAP
+- **Transferencia de archivos:** FTP y SFTP
+- **Traducción de nombres de dominio a direcciones:** DNS
+- **Administración y monitoreo de red:** SNMP
+
+Como ejemplo aplicado, se tiene el siguiente: Cuando un usuario accede a un sitio web, el navegador utiliza HTTP/HTTPS para expresar las solicitudes y las respuestas (métodos, enlaces, encabezados), mientras que internamente otras capas se encargan de asegurar un transporte confiable, el direccionamiento IP y el envío mediante Wi-Fi/Ethernet y la transmisión física.
 
 ---
 
 ## Capa de Presentación
 
-La capa de **presentación** se ocupa de que la información sea **comprensible** entre sistemas distintos mediante traducción de formatos y representaciones. También puede encargarse de **cifrado**, **compresión** y **codificación** antes de la transmisión. Se citan como ejemplos: **SSL/TLS** como mecanismo usado para cifrar tráfico web (asociado al uso de HTTPS); formatos de imagen como **JPEG, PNG y GIF**; compresión de audio como **MP3 y AAC**; y codificación de video como **MPEG y H.264** para streaming.
+La **capa de presentación** se encara de que la información pueda ser comprendida entre los diferentes sistemas que la consumen; esto, mediante la traducción de formatos y representaciones. Igualmente, puede encargarse de gestionar el cifrado, compresión y codificación previo a comenzar con la transmisión. 
 
-Un ejemplo típico es una plataforma de videollamadas: la capa de presentación “prepara” el audio/video comprimiéndolo para no saturar el enlace, y puede cifrarlo para evitar que terceros lo interpreten aunque intercepten paquetes.
+- **SSL/TLS:** Mecanismo utilizado para cifrar tráfico web (asociado con HTTPS).
+- **JPEG/PNG/GIF:** Formatos de imagen.
+- **MP3/AAC:** Compresión de audio.
+- **MPEG/H.264:** Codificación de video y *streaming*.
+
+Por ejemplo, en videollamadas, la capa de presentación es la responsable de preparar el contenido audiovisual comprimiéndolo para no saturar el enlace, pudiendo además cifrarlo con fines de seguridad.
 
 ---
 
 ## Capa de Sesión
 
-La capa de **sesión** se centra en la administración de sesiones entre aplicaciones: **establece, mantiene y termina** comunicaciones lógicas. En el material se señalan ejemplos de tecnologías/protocolos asociados: **NetBIOS** (gestión de sesiones en entornos Windows), **RPC** (acceso remoto a aplicaciones/servicios) y **SIP** (usado en llamadas VoIP).
+La **capa de sesión** se centra en gestionar la administración de las sesiones entre aplicaciones, encargándose en establecer, mantener y finalizar las comunicaciones lógicas. 
 
-Además, al comparar modelos, se describe que la capa de sesión puede aportar **sincronización**, “milestones” o puntos de reanudación, y recuperación de un intercambio de datos tras interrupciones.
+Se enlistan tecnologías/protocolos asociados:
+
+- **NetBIOS:** Gestión de sesiones en entornos Windows. 
+- **RPC:** Acceso remoto a aplicaciones/servicios. 
+- **SIP:** Usado en llamadas VoIP.
+
+Adicionalmente, al comparar modelos, esta capa es capaz de aportar *sincronización* y puntos de reanudación, mismos que fungen como un entorno de recuperación ante interrupciones.
 
 ---
 
 ## Capa de Transporte
 
-La capa de **transporte** gestiona la comunicación **extremo a extremo** (proceso a proceso). Su objetivo es entregar datos con propiedades como confiabilidad, orden y control de flujo, dependiendo del protocolo. Se mencionan **TCP** como protocolo confiable y ordenado, y **UDP** como alternativa más rápida pero sin garantías fuertes de entrega/orden.
+Por su parte, la **capa de transporte** es la principal encargada de la comunicación *extremo a extremo*, teniendo el objetivo de entregar los datos con propiedades tales como confiabilidad, orden y control del flujo; todo esto, dependiendo del protocolo:
 
-Un ejemplo sencillo: si se envía un archivo importante, TCP ayuda a detectar pérdidas y reordenar datos; si se transmite audio en tiempo real, UDP puede preferirse para reducir latencia, aceptando posibles pérdidas.
+La capa de **transporte** gestiona la comunicación **extremo a extremo** (proceso a proceso). Su objetivo es entregar datos con propiedades como confiabilidad, orden y control de flujo, dependiendo del protocolo. 
+
+- **TCP:** Protocolo confiable y ordenado
+- **UDP:** Alternativa más rápida pero sin garantías fuertes de entrega/orden.
+
+Por ejemplo, si se envía un archivo importante, el protocolo TCP ayuda a detectar pérdidas y reorganizar datos; si se transmite audio en tiempo real, es UDP el encargado de la transmisión dadas sus capacidades para reducir latencia, aunque aceptando posibles pérdidas.
 
 ---
 
 ## Capa de Red
 
-La capa de **red** se encarga del **direccionamiento IP**, el **enrutamiento** y el **reenvío de paquetes**. Determina el “mejor camino” para que los datos lleguen a su destino a través de múltiples redes. Se citan **IPv4/IPv6** como Internet Protocol, **ICMP** como protocolo usado por herramientas como ping y traceroute, **ARP** para resolver direcciones IP a direcciones MAC, y protocolos de enrutamiento como **OSPF, RIP y BGP**.
+La **capa de red** es la responsable del direccionamiento IP, enrutamiento y reenvío de paquetes. Para ello, determina cuál es el mejor camino para transmitir los datos atravesando múltiples redes. 
 
-Aquí es clave notar la separación conceptual: IP identifica destinos a nivel de red (direcciones lógicas), mientras que ARP ayuda a vincular esa identificación con direcciones físicas (MAC) dentro de un entorno local.
+La capa de **red** se encarga del **direccionamiento IP**, el **enrutamiento** y el **reenvío de paquetes**. Determina el “mejor camino” para que los datos lleguen a su destino a través de múltiples redes. 
+
+- **IPv4/IPv6:** Internet Protocol. 
+- **ICMP** Protocolo usado por herramientas como *ping* y *traceroute*. 
+- **ARP** Resuelve direcciones IP a direcciones MAC. 
+- **OSPF, RIP y BGP:** Como protocolos de enrutamiento.
+
+Existe una separación conceptual relevante: IP es el que identifica destinos de red (direcciones lógicas), mientras que ARP vincula la identificación con direcciones MAC dentro de un entorno local.
 
 ---
 
 ## Capa de Enlace de Datos (Data Link)
 
-La capa de **enlace de datos** maneja la comunicación **nodo a nodo** dentro de la misma red local. Se responsabiliza de **detección de errores**, **direccionamiento MAC** y control de acceso al medio (MAC en el sentido de Media Access Control). Ejemplos mencionados incluyen **Ethernet (IEEE 802.3)** para redes cableadas, **Wi-Fi (IEEE 802.11)** para redes inalámbricas, **MAC** como mecanismo de identificación en LAN, y **PPP** para enlaces punto a punto (por ejemplo, DSL y enlaces seriales).
+La **capa de enlace de datos** maneja la comunicación nodo a nodo dentro de una misma red local. Es la responsable de mantener la detección de errores, direccionamiento MAC y control de acceso al medio (MAC como *Media Access Control*).
+
+- **Ethernet (IEEE 802.3):** Redes cableadas.
+- **Wi-Fi (IEEE 802.11):** Redes inalámbricas.
+- **MAC:** Mecanismo de identificación en LAN.
+- **PPP:** Para enlaces de punto a punto (DSL y enlaces seriales).
 
 ---
 
 ## Capa Física
 
-La capa **física** define el “cómo” se transmiten bits: hardware, medios y tipos de señal. Convierte datos en señales **eléctricas**, **ópticas** o **de radio**. Se enumeran ejemplos como cables **coaxiales**, **fibra**, **STP/UTP**, señales inalámbricas como **Wi-Fi** y **Bluetooth**, conectores como **RJ45** y **USB**, y estándares eléctricos (voltajes, modulación).
+La **capa física** es la que define la manera en la que se transmiten los bits. Considera *hardware*, medios y tipos de señal, convirtiendo los datos en señales eléctricas, ópticaso de radio. 
+
+Se utilizan cables coaxiales, fibra óptica, STP/UTP, señales inalámbricas como Wi-Fi y *bluetooth*, conectores como RJ45 y USB, manteniendo estándares eléctricos como voltajes y modulación.
 
 ---
 
-## Encapsulación: cómo viaja un mensaje a través de las capas
+## Encapsulación
 
-El material explica la idea de **encapsulación**: cada capa toma los datos de la capa superior y los envuelve con su propia cabecera para implementar su servicio.
+El concepto de **encapsulación** indica que, proceduralmente, cada capa toma los datos de su capa superior y los envuelve dentro de su propia cabecera para implementar su servicio. Por ejemplo:
 
-1. En transporte, un protocolo de transporte encapsula el mensaje de aplicación **M** agregando un encabezado de transporte **Ht** para formar un segmento.
+1. En *transporte*, un protocolo de transporte encapsula el mensaje de *aplicación* **M** agregando un encabezado de transporte **Ht** para formar un segmento.
     
-2. En red, se encapsula **[Ht | M]** agregando un encabezado de red **Hn** para crear un paquete.
+2. En *red*, se encapsula **[Ht | M]** agregando un encabezado de red **Hn** para crear un paquete.
     
-3. En enlace, se encapsula **[Hn | Ht | M]** agregando un encabezado de enlace **Hl** para crear una trama (frame).
+3. En *enlace*, se encapsula **[Hn | Ht | M]** agregando un encabezado de enlace **Hl** para crear una trama (frame).
     
 
 Una representación ASCII de esta lógica es:
@@ -102,46 +137,26 @@ Enlace (Link):         [   Hl   |   Hn | Ht | M ] -> frame
 Física:                bits/señal transmitida en el medio
 ```
 
-Esta organización explica por qué, al capturar tráfico, se observan cabeceras apiladas: cada una contiene información necesaria para el “trabajo” de su capa (puertos en transporte, direcciones IP y TTL en red, MAC y FCS en enlace, etc.), mientras que la carga útil suele ser el contenido producido por la capa superior.
+Tal organización explica los motivos por los que, al capturar el tráfico, pueden observarse cabeceras apiladas, de modo que cada una contiene la información necesaria para poder realizar las actividades propias de su capa (puertos en *transporte*, direcciones IP y TTL en *red*, MAC y FCS en *enlace*, etc.), mientras que la carga útil suele ser el contenido que ya ha sido producido por la capa superior.
 
 ---
 
-## Modelos de capas: TCP/IP (modelo práctico) y OSI (modelo conceptual)
+## Modelos de Capas
 
-Se presenta una tabla con un stack simplificado de 5 niveles: **Application, Transport, Network, Link, Physical**. Esto corresponde al enfoque típico de Internet (TCP/IP extendido a 5 capas), donde “Link” agrupa las tareas de enlace y “Physical” queda como la transmisión.
-
-Por otro lado, se enfatiza que el **modelo OSI** (Open Systems Interconnection) es un modelo **conceptual** de **7 capas** y que cada capa tiene funciones específicas y se comunica solo con capas adyacentes. En una comparación explícita, se indica que OSI es un marco teórico, mientras que **TCP/IP** es un modelo práctico usado en Internet; además, OSI tiene 7 capas y TCP/IP se describe con **4 capas** (donde algunas capas están fusionadas).
-
-El material también lista, como ejemplo de mapeo de funciones por capa, lo siguiente: aplicación soporta aplicaciones (FTP, SMTP, HTTP), transporte hace transferencia proceso a proceso (TCP, UDP), red enruta datagramas (IP y routing), enlace transfiere entre vecinos (Ethernet, 802.11, PPP), física coloca bits en el medio; y dentro del esquema OSI se incluyen explícitamente **presentación** (cifrado/compresión/encodings) y **sesión** (sincronización y recuperación).
+El enfoque típico de internet toma como base las capas descritas en las secciones previas. Por otro lado, el **modelo OSI** (siglas de *Open Systems Interconnection*) es un modelo conceptual de siete capas (en lugar de las cinco previas), cada una con funciones específicas y comunicación meramente adyacente. OSI funge como un marco teórico, 
 
 Una representación ASCII orientativa del OSI de 7 capas es:
 
 ```
-7. Aplicación
-8. Presentación
-9. Sesión
-10. Transporte
-11. Red
-12. Enlace de datos
-13. Física
+1. Aplicación
+2. Presentación
+3. Sesión
+4. Transporte
+5. Red
+6. Enlace de datos
+7. Física
 ```
 
 La lectura práctica es que OSI sirve para aprender y razonar con precisión sobre responsabilidades, mientras que TCP/IP describe cómo realmente se implementa la comunicación en Internet, frecuentemente fusionando capas (por ejemplo, “aplicación” suele absorber presentación y sesión en implementaciones reales).
 
 ---
-
-## Diagramas presentes en el material
-
-El documento incluye al menos un diagrama bajo el título **“Network functions roles definition.”** (mostrado como imagen). Además, aparecen figuras relacionadas con OSI/TCP-IP y con capas específicas (por ejemplo, se observan encabezados y secciones para capas como Application, Session y Data Link, aunque parte del detalle esté embebido como imagen).
-
-Como el contenido de esos diagramas se presenta en imágenes (no en texto plano completo), lo esencial que representan puede resumirse así en ASCII: una **pila de capas** donde cada nivel tiene un rol y la comunicación “baja” encapsulando y “sube” desencapsulando.
-
-```
-[Aplicación]
-[Presentación]
-[Sesión]
-[Transporte]
-[Red]
-[Enlace]
-[Física]
-```
