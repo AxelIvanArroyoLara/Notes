@@ -839,21 +839,3 @@ XML se convierte en la herramienta central de este enfoque porque permite repres
 DTD y XML Schema intentan imponer orden y validez sobre esos documentos. El primero lo hace mediante una gramática relativamente sencilla, mientras que el segundo amplía considerablemente la expresividad al incorporar tipos de datos, restricciones, herencia estructural y control de integridad. En conjunto, estos conceptos sientan las bases para comprender posteriormente cómo consultar, transformar y almacenar documentos XML dentro de sistemas de bases de datos.
 
 ---
-
-## Observaciones sobre diagramas y elementos visuales
-
-En este conjunto de diapositivas, los elementos visuales más importantes son:
-
-### Diagrama de la galaxia de estándares XML
-
-Se encuentra en la diapositiva sobre **Standard galaxy** y muestra a XML como núcleo de múltiples tecnologías relacionadas.
-
-### Tabla y ejemplo relacional para DTD schemas
-
-En las diapositivas sobre **DTD: Schemas**, se muestra un esquema relacional simple con dos relaciones, el cual sirve para ilustrar cómo una estructura tabular puede traducirse a XML y describirse con DTD.
-
-### Relación conceptual entre XML y datos semiestructurados
-
-En la diapositiva sobre **Graph-based XML model**, se establece visual y conceptualmente la equivalencia entre una expresión XML y una representación abstracta de datos semiestructurados.
-
-Si quieres, en el siguiente mensaje puedo hacer una **segunda versión todavía más detallada**, pero ahora **separada exactamente por diapositiva**, para que te sirva como guía de estudio punto por punto.
