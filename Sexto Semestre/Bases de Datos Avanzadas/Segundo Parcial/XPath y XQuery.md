@@ -1,0 +1,513 @@
+## Panorama general
+
+El estudio de las bases de datos semiestructuradas en esta parte se centra en dos grandes bloques. El primero corresponde a los **modelos de datos semiestructurados**, retomando su fundamento y la introducción a XML. El segundo bloque aborda las **bases de datos XML**, incluyendo sus conceptos base, los mecanismos de definición estructural como **DTD y XML Schema**, así como los lenguajes **XPath** y **XQuery**. Finalmente, se presentan conclusiones sobre el papel de XML en la evolución de los sistemas de bases de datos.
+
+En esta segunda parte, el énfasis principal recae en la **consulta y transformación de documentos XML**, en la forma en que XML puede representarse como un árbol, y en cómo los lenguajes de consulta permiten navegar, seleccionar, transformar y reconstruir información. Todo ello forma parte de una visión en la que los datos no necesariamente siguen una estructura rígida como en el modelo relacional clásico, sino una organización más flexible, jerárquica y adaptable.
+
+---
+
+## Consulta y transformación en XML
+
+La consulta sobre datos XML no se limita a recuperar valores aislados. Una idea fundamental es que **el resultado de una consulta XML también puede ser un documento XML**. Esto cambia de manera importante la forma de trabajar con la información, porque ya no se piensa únicamente en extraer filas o columnas, sino en **producir nuevas estructuras jerárquicas** a partir de otras existentes.
+
+Esta capacidad permite dos usos principales:
+
+**Extracción de información de grandes volúmenes de datos:** XML puede almacenar información compleja y anidada. Las consultas permiten localizar únicamente la porción relevante del documento, aun cuando el archivo completo sea extenso.
+
+**Conversión de datos entre distintas representaciones o esquemas en XML:** además de consultar, es posible transformar un documento que sigue cierta estructura a otro documento con una estructura diferente, manteniendo el contenido pero reorganizándolo de acuerdo con nuevas necesidades. Esto es especialmente útil cuando distintos sistemas intercambian información, pero no usan exactamente el mismo esquema.
+
+Para lograr estas tareas, se mencionan tres lenguajes o enfoques principales:
+
+**XPath:** lenguaje de expresiones de ruta. Se usa para señalar caminos dentro del árbol XML y localizar nodos específicos. Actúa como mecanismo de navegación y selección.
+
+**XSLT:** lenguaje de transformación. Se orienta especialmente a cambiar el formato o la representación de los datos XML.
+
+**XQuery:** estándar para consultar datos XML. Ofrece una capacidad más completa para construir consultas complejas, filtrar, ordenar, agregar resultados y devolver nueva estructura XML.
+
+Así, XML no solo funciona como formato de almacenamiento e intercambio, sino también como base sobre la cual se ejecutan operaciones de consulta y transformación de alto nivel.
+
+---
+
+## Modelo de árbol
+
+Una base importante para entender XML es concebirlo mediante un **modelo de árbol**. En este modelo, el documento está formado por nodos organizados jerárquicamente, donde existen relaciones padre-hijo y descendencia entre elementos. Esta representación permite navegar por el documento como si se recorriera una estructura arbórea.
+
+### Nodos
+
+Dentro del árbol XML aparecen distintos tipos de nodos. Se destacan dos particularmente importantes:
+
+**Atributos:** son propiedades asociadas a un elemento. No suelen verse como hijos normales del elemento en la escritura cotidiana del XML, pero conceptualmente forman parte de la información del nodo.
+
+**Elementos que tienen nodos hijo:** son los elementos que contienen otros elementos o contenido interno. Constituyen la base de la estructura jerárquica.
+
+### Contenido textual de un nodo
+
+Un nodo XML puede contener texto directamente, y ese texto puede estar mezclado con otros elementos hijos. El ejemplo mostrado es:
+
+```xml
+<element>
+  Éste es un <bold> buen </bold> libro
+</element>
+```
+
+Aquí, el elemento principal contiene texto antes y después del subelemento `<bold>`. Esto muestra que XML no solamente almacena una jerarquía de etiquetas, sino también **contenido textual intercalado** con subelementos. En otras palabras, un nodo puede tener contenido mixto: parte texto y parte estructura.
+
+### Orden de elementos y atributos
+
+También se señala el tema del **orden de elementos y atributos**. En XML, el orden de los elementos dentro de un mismo nivel puede ser significativo, porque forma parte de la secuencia del documento. En cambio, los atributos suelen interpretarse más como un conjunto de propiedades asociadas al elemento. Esta distinción es importante al momento de consultar o reconstruir resultados, ya que la jerarquía y el orden influyen en la interpretación del documento.
+
+### Descripción del esquema visual
+
+La diapositiva del modelo de árbol introduce de manera conceptual la idea de nodos, atributos, hijos y contenido textual, pero no desarrolla un diagrama formal complejo. La idea central es imaginar el documento XML como una estructura jerárquica donde cada elemento puede contener atributos, texto y otros elementos subordinados.
+
+---
+
+## XPath
+
+XPath es un lenguaje diseñado para **navegar y seleccionar partes de un documento XML**. Su lógica se basa en rutas, de forma parecida a recorrer directorios en un sistema jerárquico. Cada expresión indica una secuencia de pasos para llegar a ciertos nodos dentro del árbol.
+
+### Expresiones de ruta
+
+Las expresiones XPath se componen de una **secuencia de pasos de localización** separados por `/`, en lugar del operador `.` que se usaba en OQL. Esta diferencia refleja que XPath trabaja sobre una estructura jerárquica tipo árbol, no sobre objetos enlazados mediante acceso por punto.
+
+Además, el resultado de una expresión XPath se describe como un **conjunto de valores**. Esto significa que una sola ruta puede seleccionar múltiples nodos coincidentes en distintas partes del documento.
+
+### Ejemplo básico de ruta
+
+Se presenta la ruta:
+
+```xpath
+/family/person/name
+```
+
+Esta expresión comienza en la raíz del documento, entra al elemento `family`, luego a cada elemento `person`, y finalmente selecciona los elementos `name` que se encuentren dentro de cada persona.
+
+#### Documento de ejemplo
+
+Se muestra un documento XML con la siguiente estructura general:
+
+```xml
+<family>
+  <person id="jane" mother="mary" father="john">
+    <name> Jane Doe </name>
+  </person>
+  <person id="john" children="jane jack">
+    <name> John Doe </name>
+  </person>
+  <person id="mary" children="jane jack">
+    <name> Mary Smith </name>
+  </person>
+  <person id="jack" mother="mary" father="john">
+    <name> Jack Smith </name>
+  </person>
+</family>
+```
+
+En este caso, `family` es la raíz del fragmento, y dentro de ella aparecen varios elementos `person`. Cada persona tiene atributos como `id`, `mother`, `father` o `children`, y además un subelemento `name`.
+
+#### Resultado de la consulta
+
+Aplicando la ruta `/family/person/name`, el resultado consiste en todos los elementos `name` de cada persona:
+
+```xml
+<name> Jane Doe </name>
+<name> John Doe </name>
+<name> Mary Smith </name>
+<name> Jack Smith </name>
+```
+
+Esto deja ver que XPath no devuelve necesariamente un único valor. Devuelve todos los nodos que coinciden con la ruta especificada.
+
+### Acceso a valores de elementos
+
+Para obtener el contenido textual de los elementos `name`, se utiliza:
+
+```xpath
+/family/person/name/text()
+```
+
+La función `text()` selecciona el nodo de texto contenido dentro del elemento. En este caso, en vez de obtener los elementos `<name>...</name>`, se obtendrían solo los textos como `Jane Doe`, `John Doe`, `Mary Smith` y `Jack Smith`.
+
+### Acceso a valores de atributos
+
+Para recuperar atributos, XPath usa el prefijo `@`. El ejemplo mostrado es:
+
+```xpath
+/family/person/@children
+```
+
+Esta consulta obtiene los valores del atributo `children` de los elementos `person`. En el ejemplo, no todas las personas poseen ese atributo, por lo que solo se obtendrán los valores de quienes sí lo tienen.
+
+### Referencias IDREF no seguidas por defecto
+
+Se indica que, por defecto, las referencias de tipo **IDREF** no se siguen automáticamente. Esto significa que, aunque un atributo contenga una referencia lógica a otro elemento del documento, XPath no la resuelve solo por estar presente. La consulta debe tratar explícitamente esa relación si se desea navegar desde la referencia al elemento correspondiente.
+
+### Uso de `//` para saltar niveles
+
+Se presenta la expresión:
+
+```xpath
+/family//name
+```
+
+El operador `//` permite **omitir niveles intermedios** o buscar en todos los descendientes. En este caso, la consulta selecciona todos los elementos `name` que aparezcan en cualquier nivel descendiente a partir de `family`. En el ejemplo dado, coincide con los nombres de todas las personas.
+
+### Acceso por índice
+
+XPath permite seleccionar nodos por posición. Se muestra:
+
+```xpath
+/family/person[1]/@children
+```
+
+Esta expresión selecciona el atributo `children` de la **primera** persona dentro de `family`. El uso de índices hace posible acceder a elementos según su posición relativa dentro del conjunto de hijos del mismo tipo.
+
+### Predicados de selección
+
+Los predicados permiten filtrar nodos con condiciones. El ejemplo es:
+
+```xpath
+/family/person[ age > 18 ]
+```
+
+Aquí se seleccionan solamente aquellos elementos `person` cuyo subelemento `age` cumpla la condición `> 18`. Esto muestra que XPath no solo navega, sino que también puede **filtrar por contenido interno**.
+
+### Conteo de nodos coincidentes
+
+Otra capacidad es contar nodos para evaluar condiciones sobre la estructura. El ejemplo presentado es:
+
+```xpath
+/family[ count(person) > 2 ]
+```
+
+Esta ruta selecciona el elemento `family` solo si contiene más de dos elementos `person`. Así, XPath puede formular restricciones basadas en la cantidad de hijos o coincidencias.
+
+### Operaciones y funciones adicionales
+
+También se enumeran otros recursos importantes de XPath:
+
+**`//`:** permite saltar niveles o seleccionar descendientes.
+
+**Función `id`:** sirve para localizar un elemento a partir de su identificador.
+
+**Operador `|`:** representa la unión de resultados de distintas expresiones.
+
+**`/..`:** acceso al padre del nodo actual.
+
+**`//`:** además de saltar niveles, expresa descendencia.
+
+### Selectores y nodos seleccionados
+
+Se incluye una tabla con selectores básicos y su significado. Su contenido puede reescribirse así:
+
+**`/`:** selecciona la raíz del documento.
+
+**`//`:** selecciona descendientes o permite saltar niveles.
+
+**`*`:** selecciona cualquier elemento.
+
+**`name`:** selecciona el elemento con etiqueta `name`.
+
+**`@*`:** selecciona todos los atributos.
+
+**`@name`:** selecciona el atributo llamado `name`.
+
+**`text()`:** selecciona cualquier nodo de texto.
+
+**`processing-instruction('nombre')`:** selecciona una instrucción de procesamiento con ese nombre.
+
+**`comment()`:** selecciona cualquier comentario.
+
+**`node()`:** selecciona cualquier nodo.
+
+**`id('value')`:** selecciona el elemento cuyo identificador es `value`.
+
+Esta tabla resume que XPath puede operar sobre distintos tipos de nodos, no solo sobre elementos. Puede recuperar atributos, texto, comentarios e incluso instrucciones de procesamiento.
+
+---
+
+## XQuery
+
+XQuery es el lenguaje estándar orientado a **consultar datos XML** de forma más poderosa y expresiva que XPath por sí solo. Mientras XPath se enfoca principalmente en localizar nodos, XQuery permite recorrer colecciones, asignar variables, aplicar condiciones, ordenar resultados y construir documentos XML nuevos como salida.
+
+### Relación con SQL
+
+Se establece que las consultas en XQuery son **similares a las consultas SQL**. La analogía no es exacta en sintaxis, pero sí en intención: ambas permiten seleccionar datos, filtrarlos y organizar el resultado. Sin embargo, mientras SQL trabaja típicamente con tablas y filas, XQuery trabaja con documentos, nodos y estructuras jerárquicas XML.
+
+### Expresiones FLWR
+
+Las consultas se organizan en expresiones **FLWR**, cuyo nombre proviene de las secciones:
+
+**for**
+
+**let**
+
+**where**
+
+**return**
+
+Cada una cumple una función específica.
+
+#### for
+
+La cláusula `for` es similar a `from` en SQL. Se usa para iterar sobre una secuencia de nodos o valores, enlazando cada uno a una variable.
+
+#### let
+
+La cláusula `let` sirve para asignar el resultado de una expresión a una variable. No necesariamente itera, sino que almacena temporalmente un valor o secuencia para reutilizarlo después.
+
+#### where
+
+La cláusula `where` se parece al `where` de SQL. Filtra los elementos procesados de acuerdo con una condición lógica.
+
+#### return
+
+La cláusula `return` define qué se devolverá como resultado. En XQuery, este resultado puede ser XML construido explícitamente dentro de la consulta.
+
+---
+
+## XQuery: consulta simple
+
+Se presenta un ejemplo para obtener las **referencias a los hijos de personas mayores**. El primer ejemplo es:
+
+```xquery
+for $p in /family/person
+let $lista := $p/@children
+where $p/age >= 60
+return <hijos> {$lista} </hijos>
+```
+
+Esta consulta funciona así:
+
+**`for $p in /family/person`:** recorre cada elemento `person`.
+
+**`let $lista := $p/@children`:** guarda en la variable `$lista` el atributo `children` de la persona actual.
+
+**`where $p/age >= 60`:** restringe el resultado a las personas cuya edad sea al menos 60.
+
+**`return <hijos> {$lista} </hijos>`:** construye un elemento XML llamado `hijos` cuyo contenido será la lista de referencias de hijos obtenida en el atributo.
+
+Luego se presenta una versión más compacta:
+
+```xquery
+for $p in /family/person[ age > 60 ]
+return <hijos> {$p/@children} </hijos>
+```
+
+Aquí el filtro se incorpora directamente en la ruta XPath dentro del `for`, evitando la necesidad de una cláusula `where` separada. Esta segunda forma muestra que XQuery puede combinar elegantemente navegación XPath con construcción XML.
+
+---
+
+## XQuery: ordenamiento
+
+XQuery permite ordenar resultados mediante la cláusula `order by`, la cual se coloca al final de la expresión correspondiente antes de `return`.
+
+El ejemplo mostrado es:
+
+```xquery
+for $p in /family/person
+order by $p/name
+return <result> {$p/*} </result>
+```
+
+Aquí, se recorren las personas de `/family/person`, luego se ordenan por su nombre `$p/name`, y finalmente se devuelve un elemento `<result>` que contiene todos los hijos del nodo persona, expresados por `$p/*`.
+
+También se indica que el ordenamiento puede hacerse en forma descendente:
+
+```xquery
+order by $p/name descending
+```
+
+Por tanto, XQuery no solo filtra y construye documentos, sino que también permite controlar el orden de aparición de los resultados.
+
+---
+
+## XQuery: funciones
+
+XQuery incorpora funciones para operar sobre conjuntos y valores, así como mecanismos especiales para tratar referencias y hacer agregaciones.
+
+### Funciones de conjunto
+
+Se destacan las siguientes:
+
+**`distinct-value`:** elimina duplicados.
+
+**Funciones de agregación como `sum`, `count`, etc.:** permiten resumir o combinar valores numéricos o contar elementos.
+
+Estas funciones son importantes porque una consulta XML a menudo devuelve secuencias de valores, y en muchos casos interesa obtener un resumen más que la lista completa.
+
+### Operador `->`
+
+Se explica que el operador `->` puede aplicarse sobre valores de tipo:
+
+**IDREF:** para obtener el elemento correspondiente.
+
+**IDREFS:** para obtener un conjunto de elementos.
+
+Esto es muy importante porque, aunque en XPath las referencias IDREF no se siguen por defecto, en XQuery se dispone de un mecanismo para resolverlas explícitamente y convertir una referencia almacenada en un atributo en acceso efectivo al elemento referenciado.
+
+### Ejemplo con promedio de edad de hijos
+
+Se muestra la consulta:
+
+```xquery
+{
+  FOR $p IN /family/person
+  LET $e := avg(/family/person/@children->person/age)
+  RETURN
+    <resultado>
+      {$p/name}
+      <promedio> {$e} </promedio>
+    </resultado>
+}
+```
+
+La intención descrita es generar una **lista de nombres de personas con el promedio de edad de sus hijos**. La consulta recorre las personas, calcula un promedio usando `avg(...)`, y después devuelve un elemento `resultado` que contiene el nombre de la persona y un subelemento `promedio`.
+
+Conceptualmente, este ejemplo enseña varias cosas al mismo tiempo:
+
+**Uso de `LET` para guardar un cálculo.**
+
+**Uso de una función de agregación (`avg`).**
+
+**Resolución de referencias mediante `->`.**
+
+**Construcción de un nuevo documento XML como resultado.**
+
+Aunque el ejemplo ilustra la idea general, lo verdaderamente importante en los apuntes es entender que XQuery permite mezclar navegación, resolución de referencias, cálculo agregado y reconstrucción de estructura XML en una sola consulta.
+
+### Funciones integradas
+
+También se enlistan algunas funciones integradas:
+
+**`document(name)`:** permite acceder a un documento XML a partir de su nombre.
+
+**`number(string)`:** convierte una cadena en número.
+
+Estas funciones amplían la utilidad de XQuery al permitir cargar documentos externos o hacer conversiones de tipo cuando el contenido XML se encuentra en forma textual.
+
+### Otras características del lenguaje
+
+Se mencionan además varias construcciones adicionales:
+
+**`if-then-else`:** permite evaluación condicional.
+
+**`some $e in path satisfies P`:** verifica si existe al menos un elemento en la ruta que satisface la condición `P`.
+
+**`every $e in path satisfies P`:** verifica si todos los elementos en la ruta satisfacen la condición `P`.
+
+Estas expresiones cuantificadas son especialmente útiles en XML, donde a menudo se trabaja con listas o colecciones anidadas de elementos, y se desea expresar propiedades del tipo “al menos uno cumple” o “todos cumplen”.
+
+---
+
+## XQuery: construcción de documentos más complejos
+
+Se presenta una consulta más completa cuyo propósito es **generar un documento con encabezados, títulos y listas de personas clasificadas según la edad de sus hijos**. El ejemplo es:
+
+```xquery
+<documento>
+  <personas-hijos-mayores>
+    <título>Lista de las personas con todos sus hijos mayores de edad</título>
+    { FOR $p IN /family/person
+      WHERE EVERY e in $p/@children->person/age SATISFIES ( e > 18 )
+      RETURN $p }
+  </personas-hijos-mayores>
+
+  <personas-con-hijos-menores>
+    <título>Lista de las personas con hijos menores de edad</título>
+    { FOR $p IN /family/person
+      WHERE SOME e in $p/@children->person/age SATISFIES ( e < 18 )
+      RETURN $p }
+  </personas-con-hijos-menores>
+
+  <fecha> {current-date()} </fecha>
+</documento>
+```
+
+Este ejemplo es muy rico porque reúne múltiples capacidades del lenguaje.
+
+### Primera sección: personas con todos sus hijos mayores de edad
+
+En la sección `<personas-hijos-mayores>`, se devuelve una lista de personas para las cuales **todas** las edades de sus hijos satisfacen `e > 18`. Para ello se usa:
+
+```xquery
+WHERE EVERY e in $p/@children->person/age SATISFIES ( e > 18 )
+```
+
+La palabra clave `EVERY` expresa una cuantificación universal. Solo se selecciona la persona si todos los elementos evaluados cumplen la condición.
+
+### Segunda sección: personas con al menos un hijo menor
+
+En la sección `<personas-con-hijos-menores>`, se seleccionan aquellas personas para las cuales **existe al menos un hijo** cuya edad sea menor de 18:
+
+```xquery
+WHERE SOME e in $p/@children->person/age SATISFIES ( e < 18 )
+```
+
+Aquí `SOME` representa cuantificación existencial. Basta con que una edad cumpla la condición para que la persona sea incluida.
+
+### Inclusión de la fecha actual
+
+Al final se agrega:
+
+```xquery
+<fecha> {current-date()} </fecha>
+```
+
+Esto muestra que XQuery puede incorporar información calculada dinámicamente, como la fecha actual, dentro del documento resultado.
+
+### Importancia del ejemplo
+
+Este ejemplo demuestra claramente que XQuery no es solo un lenguaje para recuperar datos, sino para **generar documentos XML completos, estructurados y enriquecidos**, integrando contenido consultado, condiciones lógicas y valores computados. Es decir, la salida puede tener una forma totalmente distinta a la entrada, siempre que la consulta defina cómo reconstruirla.
+
+---
+
+## Síntesis conceptual de XPath y XQuery
+
+XPath y XQuery están estrechamente relacionados, pero cumplen papeles distintos.
+
+### XPath como mecanismo de navegación
+
+XPath se especializa en **recorrer el árbol XML** y seleccionar nodos, atributos o textos mediante rutas, predicados y funciones básicas. Es ideal cuando se requiere señalar exactamente dónde está cierta información dentro del documento.
+
+### XQuery como lenguaje completo de consulta y reconstrucción
+
+XQuery se apoya en XPath, pero va más allá. Permite iterar, asignar variables, filtrar, ordenar, agregar y construir nueva estructura XML. En otras palabras, XPath localiza; XQuery procesa y reconstruye.
+
+### Relación entre ambos
+
+En la práctica, XQuery incorpora expresiones XPath dentro de sus cláusulas `for`, `let` y `where`. Por ello, el dominio de XPath es una base importante para comprender XQuery. XPath aporta la localización precisa dentro del árbol; XQuery añade lógica de consulta y composición del resultado.
+
+---
+
+## Conclusiones
+
+Se plantea la pregunta de si XML puede cambiar la construcción de bases de datos. La respuesta se vincula con varias ideas centrales. Primero, la investigación en **bases de datos semiestructuradas** muestra que existen necesidades que no encajan cómodamente en esquemas rígidos tradicionales. XML ofrece una alternativa para representar información con mayor flexibilidad estructural.
+
+También se destaca la **necesidad de esquemas flexibles**, lo cual remite a tecnologías como XML Schema. En contextos donde los datos cambian con frecuencia, son heterogéneos o provienen de múltiples fuentes, la rigidez total de un esquema fijo puede ser una limitación importante.
+
+Otro punto clave es la aparición de **lenguajes de consulta estandarizados**, como XQuery. La estandarización es esencial para que XML no sea solo un formato de intercambio, sino una verdadera plataforma sobre la cual se puedan construir sistemas de consulta, transformación y gestión de información.
+
+Se menciona además el **efecto de la Web**, lo cual sugiere que XML adquirió gran relevancia precisamente porque la Web impulsó el intercambio masivo de información heterogénea entre sistemas distintos. En ese entorno, un formato autodescriptivo y jerárquico como XML resultó especialmente valioso.
+
+Finalmente, se cuestiona la **integración débil usando el enfoque objeto-relacional**, destacando varios problemas o temas abiertos:
+
+**Transformación a tablas:** convertir estructuras XML jerárquicas a tablas relacionales puede ser posible, pero no siempre natural ni eficiente.
+
+**Administración de grafos:** los vínculos y referencias entre nodos pueden acercarse más a estructuras de grafo que a tablas planas.
+
+**¿Middleware o DBMS?:** queda abierta la cuestión de si el manejo de XML debe resolverse mediante capas intermedias sobre sistemas existentes o mediante sistemas gestores de bases de datos que lo soporten de forma nativa.
+
+En conjunto, la conclusión general es que XML y las bases de datos semiestructuradas representan una respuesta a necesidades de flexibilidad, interoperabilidad y manejo de estructuras jerárquicas, pero también abren desafíos de integración con los modelos tradicionales y con las arquitecturas de gestión de datos ya existentes.
+
+---
+
+## Resumen integrador
+
+Las bases de datos semiestructuradas introducen una manera de representar datos donde la estructura puede ser menos rígida que en el modelo relacional. XML se vuelve una pieza central de este enfoque porque permite organizar información en forma jerárquica, con elementos, atributos, contenido textual y referencias.
+
+Dentro de este contexto, **XPath** proporciona las herramientas para navegar y seleccionar partes del documento usando rutas, predicados, funciones y selectores. Por su parte, **XQuery** amplía esas capacidades hasta convertirlas en un verdadero lenguaje de consulta, muy parecido conceptualmente a SQL, pero adaptado a documentos XML. Gracias a FLWR, al ordenamiento, a las funciones de agregación, a la resolución de referencias y a la construcción explícita de XML, es posible obtener resultados sofisticados y estructurados.
+
+Así, el estudio de XPath y XQuery no solo enseña cómo consultar XML, sino también cómo pensar los datos jerárquicos como una forma distinta de organización de la información, donde consultar equivale muchas veces a **reconstruir, transformar y generar nuevos documentos** a partir de los originales.
+
+Si quieres, en el siguiente mensaje te los convierto también en una **versión lista para Obsidian con mejor separación visual y bloques de código más bonitos**, manteniendo exactamente el mismo contenido.
