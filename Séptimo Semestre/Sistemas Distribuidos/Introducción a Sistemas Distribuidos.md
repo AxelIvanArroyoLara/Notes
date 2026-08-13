@@ -272,3 +272,74 @@ La arquitectura debe ser capaz de adaptarse a estos cambios.
 
 ## Paralelismo, Concurrencia y Distribución
 
+A continuación se enlistan parte de los principios fundamentales del campo de estudio que comprende los Sistemas Distribuidos:
+
+- Paralelismo
+- Gestión de información
+- Arquitectura
+- Composición
+
+Estos tópicos se estudiarán a profundidad posteriormente.
+
+### Paralelismo:
+
+Varias tareas se ejecutan simultáneamente al aprovechar diferentes núcleos al mismo tiempo.
+
+```
+CPU 1 → tarea A
+
+CPU 2 → tarea B
+```
+
+### Concurrencia:
+
+Define la capacidad para ejecutar varias tareas durante un mismo periodo:
+
+```
+Tarea A ────┐
+Tarea B ───────┐
+Tarea C ──┐    │
+          tiempo →
+```
+
+Cabe destacar, que no necesariamente ocurren exactamente en un mismo instante.
+
+### Distribución:
+
+Dos o más tareas se ejecutan de manera simultánea, pero no en máquinas distintas:
+
+```
+Máquina A → tarea A
+     ↕
+Máquina B → tarea B
+```
+
+--- 
+## Quality of Service
+
+Por sus siglas QoS, el **Quality of Service** hace referencia a la capacidad de un sistema para cumplir adecuadamente cierto esquema de garantías como:
+
+- Latencia
+- Disponibilidad
+- Rendimiento
+- Seguridad
+- Fiabilidad
+
+De manera particular, no solo se desea que un sistema funcione, sino que lo haga correctamente.
+
+--- 
+## Tolerancia a Fallas
+
+Un sistema distribuido costa de muchos componentes que trabajan en conjunto para llegar a una misma finalidad; esto, de manera inherente, lleva a un mayor potencial de falla:
+
+```
+Servidor A ✅
+Servidor B ❌
+Servidor C ✅
+Red       ✅
+DB        ✅
+```
+
+La **tolerancia a fallas** es la capacidad que tiene un sistema para mantenerse funcionando incluso a pesar de fallas en sus componentes, ya sea mediante redundancia o con una capacidad limitada.
+
+---
