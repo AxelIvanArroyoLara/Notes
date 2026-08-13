@@ -53,3 +53,22 @@ Un detalle a destacar, es que las recompensas no deben ser tratadas de forma con
 El funcionamiento de un sistema agéntico de ese tipo se basa en la secuencia a continuación:
 
 ---
+## Riesgos
+
+Todo sistema de inteligencia artificial está sumamente propenso a caer en sesgos o desarrollar tendencias maliciosas. 
+
+### Riesgos en el modelo y los datos:
+
+Los datos se erigen como el componente central para todo aprendizaje autónomo; de no ser tratados correctamente previo a la implementación, pueden llevar a consecuencias severas.
+
+- Información sesgada o incompleta
+- Fugas de datos
+- Dist shift
+- Métricas mal seleccionadas
+
+### Riesgos en el despliegue:
+
+- Automatización maliciosa
+- Confianza injustificada
+- Impacto desigual de los errores
+- Falta de supervisión humana
