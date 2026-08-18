@@ -15,6 +15,8 @@ http https, smtp, ftp, voip        Application Layer       messages
 physical medium                     bits
 
 
+Offset reorganiza todos los datagramas y reconstruye originales.
+
 Port numbers (tcp)
 
 Se detectan errores mediante checksum y error detection (handshake) 
