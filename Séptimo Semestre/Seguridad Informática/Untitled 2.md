@@ -103,3 +103,9 @@ La seguridad es un problema de gestión, no técnico. De no tener un manejo adec
 Una compañía debe tener buenos procesos de seguridad y debe entonces desarrollar un plan de control de acceso para cada recurso (ISO 27001 ISMS): Framework para que las organiaciones puedan establecer, implementar, mantener e implementar contínuamente sus ISMS, para después proteger recursos de información sensibles, manejar riesgos, etc. 
 
 Respond → Plan → Protect → Respond
+
+The plan includes AAA protections:
+
+- Authentication: Providing identity of the person wishing access
+- Authorization: Determining what the person may do if he or she is authenticated
+- Auditing: 
