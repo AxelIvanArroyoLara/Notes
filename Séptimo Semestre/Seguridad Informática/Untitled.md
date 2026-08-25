@@ -959,14 +959,14 @@ El no repudio no significa ocultar quién envió los datos. Eso correspondería 
 
 Un servicio expresa el objetivo que queremos conseguir. Un mecanismo indica cómo intentamos conseguirlo.
 
-|Servicio|Mecanismos posibles|
-|---|---|
-|Confidencialidad|Cifrado, permisos y VPN|
-|Integridad|HMAC, hashes y firmas digitales|
-|Disponibilidad|Redundancia, balanceo y mitigación DDoS|
-|Autenticación|Contraseñas, biometría, MFA y certificados|
-|Control de acceso|Roles, permisos, ACL y políticas|
-|No repudio|Firmas digitales, certificados y registros|
+| Servicio          | Mecanismos posibles                        |
+| ----------------- | ------------------------------------------ |
+| Confidencialidad  | Cifrado, permisos y VPN                    |
+| Integridad        | HMAC, hashes y firmas digitales            |
+| Disponibilidad    | Redundancia, balanceo y mitigación DDoS    |
+| Autenticación     | Contraseñas, biometría, MFA y certificados |
+| Control de acceso | Roles, permisos, ACL y políticas           |
+| No repudio        | Firmas digitales, certificados y registros |
 
 Una misma tecnología puede apoyar varios servicios. TLS, por ejemplo, puede proporcionar confidencialidad, integridad y autenticación del servidor.
 
