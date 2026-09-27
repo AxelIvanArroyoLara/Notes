@@ -1,5 +1,6 @@
 {
-  "cssTheme": "Allium",
+  "cssTheme": "Simply Colorful",
   "baseFontSize": 20,
-  "accentColor": "#5d5ae2"
+  "accentColor": "#5d5ae2",
+  "theme": "system"
 }
