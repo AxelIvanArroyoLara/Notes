@@ -1,6 +1,8 @@
 {
-  "cssTheme": "Cupertino",
+  "cssTheme": "Workbench",
   "baseFontSize": 20,
   "accentColor": "#5d5ae2",
-  "theme": "system"
+  "theme": "system",
+  "translucency": false,
+  "showRibbon": true
 }
